@@ -18,6 +18,14 @@ a:hover{ color:var(--cyan-600); }
 
 .container{ max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter); }
 
+.skip-link{
+  position:absolute; left:-9999px; top:0; z-index:100;
+  background:var(--cyan); color:var(--on-cyan);
+  font-family:var(--font-text); font-weight:700; font-size:14px;
+  padding:12px 20px; border-radius:0 0 11px 0; text-decoration:none;
+}
+.skip-link:focus{ left:0; color:var(--on-cyan); }
+
 /* ---------- Design-system components ---------- */
 
 /* Button */
