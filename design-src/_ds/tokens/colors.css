@@ -1,0 +1,58 @@
+/* ============================================================
+   LARSOON — Color tokens
+   One vivid accent (electric cyan) on deep cool slate, with a
+   precise cool-neutral scale. Cyan punctuates; it is never a
+   full-bleed wash. Base values + semantic aliases.
+   ============================================================ */
+
+:root{
+  /* ---- Brand accent ---- */
+  --cyan:#00CEF1;          /* primary brand accent — fills, large display on dark, borders, accents. NOT text on white */
+  --cyan-bright:#25E3FF;   /* hover / light end of gradient */
+  --azure:#18B4E6;         /* secondary accent / gradient partner */
+  --cyan-600:#0490B0;      /* UI accent on light (icons, small marks) */
+  --cyan-800:#036884;      /* accessible cyan TEXT/links on white (passes AA) */
+  --cyan-tint:#E8FBFE;     /* faint cyan fill (icon chips, callouts) */
+  --cyan-tint-2:#D4F6FC;   /* deeper faint cyan fill */
+  --on-cyan:#04232C;       /* dark text to place on a cyan fill */
+  --grad:linear-gradient(118deg, #25E3FF 0%, #00CEF1 45%, #18A6E6 100%); /* @kind color */
+
+  /* ---- Dark surfaces (ink) ---- */
+  --midnight:#0B141C;      /* primary dark surface — hero, footer, signature CTA */
+  --footer:#070D13;        /* very dark footer surface */
+  --slate-900:#0F1A24;     /* default ink / near-black text */
+  --slate-800:#1A2A37;     /* dark card surface, dividers on dark */
+  --slate-700:#243646;     /* borders / hairlines on dark */
+
+  /* ---- Cool neutral scale ---- */
+  --n-600:#45586A;         /* strong secondary text */
+  --n-500:#5E7283;         /* body secondary / captions */
+  --n-400:#8597A6;         /* muted labels, units, meta */
+  --n-300:#B7C3CD;         /* body text on dark surfaces */
+  --n-200:#DCE3E9;         /* borders / hairlines on light */
+  --n-100:#EEF2F5;         /* subtle fills, track backgrounds */
+  --n-50:#F6F9FB;          /* page background tint, inset cards */
+  --white:#FFFFFF;         /* cards, primary light surface */
+  --paper:#F1F4F7;         /* optional cool page background */
+
+  /* ---- Semantic ---- */
+  --savings:#15A06E;       --savings-tint:#E5F6EF;   /* positive figures / "ušteda" / ROI */
+  --solar:#F6A609;         --solar-tint:#FEF3DC;     /* sun / yield — used sparingly */
+  --indigo:#5B53D6;        --indigo-tint:#EBEAFE;    /* 4th icon-chip tint for variety */
+  --error:#E5484D;
+
+  /* ---- Semantic aliases ---- */
+  --ink:var(--slate-900);          /* default text color on light */
+  --text-body:var(--n-600);        /* body copy on light */
+  --text-muted:var(--n-500);       /* secondary copy on light */
+  --text-on-dark:var(--n-300);     /* body copy on dark surfaces */
+  --link:var(--cyan-800);          /* accessible link on light */
+
+  --surface-page:var(--white);     /* default page background */
+  --surface-card:var(--white);     /* card surface on light */
+  --surface-inset:var(--n-50);     /* inset / track fills */
+  --surface-dark:var(--midnight);  /* signature dark band */
+
+  --line:var(--n-200);             /* hairline on light */
+  --line-dark:var(--slate-700);    /* hairline on dark */
+}

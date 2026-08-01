@@ -1,0 +1,44 @@
+/* ============================================================
+   LARSOON — Spacing, radius, shadow & layout tokens
+   Soft low-spread shadows, generous radii, calm rhythm.
+   ============================================================ */
+
+:root{
+  /* ---- Spacing scale (4px base) ---- */
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:20px;
+  --space-6:24px;
+  --space-8:32px;
+  --space-10:40px;
+  --space-12:48px;
+  --space-16:64px;
+  --space-20:80px;
+  --space-24:96px;
+
+  /* ---- Radius ---- */
+  --r-pill:999px;
+  --r-lg:24px;
+  --r:16px;       /* base — cards */
+  --r-sm:11px;    /* small elements, buttons */
+
+  /* ---- Shadows ---- */
+  --shadow-sm:0 2px 8px -3px rgba(11,20,28,.12);
+  --shadow:0 2px 4px rgba(11,20,28,.04), 0 24px 50px -26px rgba(11,20,28,.30);
+  --shadow-xl:0 40px 90px -30px rgba(4,20,30,.6);
+  --shadow-cyan:0 16px 36px -14px rgba(0,206,241,.70);   /* primary CTA glow */
+
+  /* ---- Layout ---- */
+  --maxw:1200px;
+  --gutter:clamp(20px, 5vw, 68px);   /* @kind spacing */
+  --section-pad:clamp(64px, 8vw, 120px);
+  --card-gap:20px;        /* @kind spacing */
+
+  /* ---- Motion ---- */
+  --ease:cubic-bezier(.22,.61,.36,1);  /* @kind other */
+  --dur-fast:140ms;                    /* @kind other */
+  --dur:220ms;                         /* @kind other */
+  --dur-slow:420ms;                    /* @kind other */
+}

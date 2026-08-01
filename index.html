@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solarna elektrana ključ u ruke — izračun uštede | Larsoon</title>
+<meta name="description" content="Izračunajte uštedu i povrat investicije u solarnu elektranu za 3 minute. Projektiranje, FZOEU poticaji do 6.000 € i ugradnja — sve vodi Larsoon Energy.">
+<link rel="canonical" href="https://www.larsoon.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vidite svoju uštedu prije nego što potpišete | Larsoon Energy">
+<meta property="og:description" content="Izračunajte uštedu i povrat investicije u solarnu elektranu za 3 minute. Projektiranje, FZOEU poticaji do 6.000 € i ugradnja — sve vodi Larsoon Energy.">
+<meta property="og:url" content="https://www.larsoon.com/">
+<meta property="og:image" content="https://www.larsoon.com/assets/og-larsoon-solarna-elektrana.jpg">
+<meta property="og:locale" content="hr_HR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/main.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Koliko košta solarna elektrana za kuću u 2026.?","acceptedAnswer":{"@type":"Answer","text":"Solarna elektrana ključ u ruke za obiteljsku kuću stoji okvirno 4.700 € za 5 kW, odnosno 8.800 € za 10 kW, s 0 % PDV-a na isporuku i ugradnju. Uz FZOEU poticaj do 6.000 € neto ulaganje je do 50 % niže. Točnu cijenu za svoj krov izračunajte našim kalkulatorom."}},
+  {"@type":"Question","name":"Koje poticaje mogu dobiti u 2026.?","acceptedAnswer":{"@type":"Answer","text":"FZOEU poziv EnU-6/26 sufinancira do 50 % investicije: najviše 600 € po kW elektrane (do 6.000 €) i 350 € po kWh baterije (do 5.600 €). Kućanstva u riziku od energetskog siromaštva ostvaruju do 70 %. Prijave kreću 2. rujna 2026. putem sustava eFZOEU — mi vodimo cijelu prijavu za vas."}},
+  {"@type":"Question","name":"Isplati li se solarna elektrana nakon ukidanja net-meteringa?","acceptedAnswer":{"@type":"Answer","text":"Da — ali se isplativost sada temelji na samopotrošnji. Od 1. 1. 2026. višak struje predan u mrežu obračunava se mjesečno po nižoj otkupnoj cijeni, dok svaki kWh koji potrošite iz vlastite elektrane vrijedi punih ~0,18 €. Uz dobro dimenzioniran sustav i FZOEU poticaj povrat je tipično 4,5–6 godina, a s baterijom godišnja ušteda gotovo se udvostručuje."}},
+  {"@type":"Question","name":"Trebam li bateriju?","acceptedAnswer":{"@type":"Answer","text":"Bez baterije prosječno kućanstvo iskoristi oko 30 % proizvedene struje, a s baterijom oko 70 % — vlastitu struju trošite i navečer. Budući da FZOEU od 2026. sufinancira i baterije (350 €/kWh), baterija u pravilu ne produljuje povrat investicije, a znatno povećava uštedu."}},
+  {"@type":"Question","name":"Koliko struje proizvodi solarna elektrana u Hrvatskoj?","acceptedAnswer":{"@type":"Answer","text":"Prosječno oko 1.150 kWh godišnje po kW instalirane snage — u kontinentalnoj Hrvatskoj oko 1.100 kWh, a u Dalmaciji do 1.400 kWh. Elektrana od 10 kW tako proizvede 11.000–14.000 kWh godišnje, što je više od prosječne godišnje potrošnje kućanstva."}},
+  {"@type":"Question","name":"Koliko traje cijeli proces i što ja moram napraviti?","acceptedAnswer":{"@type":"Answer","text":"Gotovo ništa — Larsoon vodi projekt, prijavu na FZOEU, suglasnosti HEP-a, ugradnju i puštanje u pogon. Ponudu dobivate za 10 minuta, a cijeli proces do trajnog pogona tipično traje 7 do 11 tjedana, ovisno o rokovima HEP-a."}},
+  {"@type":"Question","name":"Koja jamstva dobivam?","acceptedAnswer":{"@type":"Answer","text":"Do 25 godina jamstva na panele, 5 + 5 godina na inverter (5 godina osnovnog i 5 godina produljenog jamstva) i 2 godine na izvedene radove. Uz ugovor o održavanju pratimo proizvodnju vaše elektrane i reagiramo prije nego što kvar primijetite."}}
+]}
+</script>
+</head>
+<body>
+
+<!-- 1 · Sticky nav -->
+<header class="nav">
+  <div class="nav__inner">
+    <a href="#" aria-label="Larsoon — početna"><img src="assets/larsoon-logo-light.png" alt="Larsoon" class="nav__logo"></a>
+    <nav class="nav__links" aria-label="Glavna navigacija">
+      <a href="#kalkulator">Ušteda</a>
+      <a href="#zasto">Zašto Larsoon</a>
+      <a href="#kako">Kako funkcionira</a>
+      <a href="#rjesenja">Rješenja</a>
+      <a href="#radovi">Naši radovi</a>
+      <a href="#faq">Česta pitanja</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="nav__actions">
+      <a href="#" class="btn btn--primary btn--sm" data-wizard>Izradi ponudu</a>
+      <button class="nav__menu-btn" type="button" id="menuBtn" aria-label="Izbornik" aria-expanded="false" aria-controls="mobileNav">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+  <nav class="nav__mobile" id="mobileNav" aria-label="Mobilna navigacija">
+    <a href="#kalkulator">Ušteda</a>
+    <a href="#zasto">Zašto Larsoon</a>
+    <a href="#kako">Kako funkcionira</a>
+    <a href="#rjesenja">Rješenja</a>
+    <a href="#radovi">Naši radovi</a>
+    <a href="#faq">Česta pitanja</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+</header>
+
+<!-- FZOEU banner (privremeno — ukloniti nakon zatvaranja natječaja) -->
+<div class="banner" id="fzoeuBanner">
+  <div class="banner__inner">
+    <i data-lucide="megaphone"></i>
+    <span class="banner__text">Prijave na FZOEU poticaje kreću <strong>2. rujna</strong> — osigurajte termin na vrijeme.</span>
+    <button type="button" class="banner__close" id="bannerClose" aria-label="Zatvori obavijest">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+</div>
+
+<!-- 2 · Hero -->
+<section class="hero">
+  <span class="hero__glow"></span>
+  <span class="grad-rule"></span>
+  <div class="hero__grid">
+    <div>
+      <span class="eyebrow eyebrow--on-dark">Solarne elektrane · ključ u ruke · cijela Hrvatska</span>
+      <h1>Vidite svoju <span class="grad-text">uštedu</span> prije nego potpišete.</h1>
+      <p class="hero__lead">Od izračuna do puštanja u pogon — sve vodimo mi. Personalizirana procjena za vaš krov: investicija, FZOEU poticaj, povrat i godišnja proizvodnja. Bez poziva i bez obveze — ponuda na vašem e-mailu za 10 minuta.</p>
+      <div class="hero__ctas">
+        <a href="#" class="btn btn--primary btn--md" data-wizard>Izradi ponudu <i data-lucide="arrow-right"></i></a>
+        <a href="#kako" class="btn btn--ghost-on-dark btn--md">Kako funkcionira</a>
+      </div>
+      <div class="hero__trust">
+        <i data-lucide="check-circle-2"></i>
+        <span>300+ elektrana ugrađeno diljem Hrvatske.</span>
+      </div>
+    </div>
+    <div class="hero__aside">
+      <div class="hero__img">
+        <img src="assets/hero-family-solar.jpg" alt="Obitelj ispred kuće sa solarnim panelima na krovu" fetchpriority="high">
+        <span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · Trust strip -->
+<section class="trust">
+  <div class="trust__grid">
+    <div class="trust__item">
+      <span class="chip chip--cyan"><i data-lucide="award"></i></span>
+      <div>
+        <div class="trust__num">10+ godina</div>
+        <div class="trust__label">iskustva tima</div>
+      </div>
+    </div>
+    <div class="trust__item">
+      <span class="chip chip--savings"><i data-lucide="zap"></i></span>
+      <div>
+        <div class="trust__num">300+ elektrana</div>
+        <div class="trust__label">ugrađeno u Hrvatskoj</div>
+      </div>
+    </div>
+    <div class="trust__item">
+      <span class="chip chip--indigo"><i data-lucide="file-check-2"></i></span>
+      <div>
+        <div class="trust__num">0 odbijenih</div>
+        <div class="trust__label">FZOEU prijava</div>
+      </div>
+    </div>
+    <div class="trust__item">
+      <span class="chip chip--solar"><i data-lucide="shield-check"></i></span>
+      <div>
+        <div class="trust__num">do 25 godina</div>
+        <div class="trust__label">jamstva na panele</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · Calculator -->
+<section id="kalkulator" class="calc">
+  <span class="calc__glow"></span>
+  <span class="grad-rule"></span>
+  <div class="calc__inner">
+    <span class="eyebrow eyebrow--on-dark">Izračun za 30 sekundi</span>
+    <h2>Kalkulator uštede solarne elektrane</h2>
+    <p class="calc__sub">Pomaknite klizač i vidite koliko biste štedjeli — s baterijom ili bez nje. Unesite snagu elektrane ili svoj mjesečni račun za struju.</p>
+    <div class="calc__tabs-wrap">
+      <div class="calc__tabs" role="group" aria-label="Odaberite ulaz">
+        <button type="button" class="calc__tab" id="tabPower" aria-pressed="false">Snaga (kW)</button>
+        <button type="button" class="calc__tab" id="tabBill" aria-pressed="true">Račun (€/mj)</button>
+      </div>
+    </div>
+    <h3 class="calc__lead" id="calcLead">Moj mjesečni račun za struju je</h3>
+    <div class="calc__stage">
+      <div class="calc__value-row">
+        <span class="calc__value" id="calcValue">160</span>
+        <span class="calc__unit" id="calcUnit">€</span>
+      </div>
+      <div class="calc__slider-wrap">
+        <div class="slider">
+          <div class="slider__head">
+            <label class="slider__label" for="calcSlider" id="sliderLabel">Mjesečni račun za struju</label>
+            <span class="slider__readout"><span id="sliderReadout">160</span><small id="sliderReadoutUnit">€</small></span>
+          </div>
+          <div class="slider__track-zone">
+            <div class="slider__track"></div>
+            <div class="slider__fill" id="sliderFill"></div>
+            <input type="range" id="calcSlider" min="30" max="500" step="10" value="160">
+          </div>
+        </div>
+      </div>
+      <button type="button" class="calc__batt" id="battChip" aria-pressed="true">
+        <i data-lucide="battery-charging"></i><span id="battLabel">S baterijom</span>
+      </button>
+    </div>
+    <div class="calc__kpi" aria-live="polite">
+      <div>
+        <div class="kpi__label">Nova mjesečna režija</div>
+        <div class="kpi__value kpi__value--cyan"><span id="kpiNewBill">28</span> <small>€</small></div>
+      </div>
+      <div>
+        <div class="kpi__label">Godišnja ušteda</div>
+        <div class="kpi__value kpi__value--savings"><span id="kpiSaving">1.587</span> <small>€</small></div>
+      </div>
+      <div>
+        <div class="kpi__label">Procijenjeni povrat</div>
+        <div class="kpi__value"><span id="kpiPayback">4,4</span> <small>god</small></div>
+      </div>
+      <div>
+        <div class="kpi__label">Neto ulaganje</div>
+        <div class="kpi__value"><span id="kpiNet">6.908</span> <small>€</small></div>
+      </div>
+    </div>
+    <div class="calc__roi">
+      <span>ROI nakon 20 god: <strong><span id="kpiRoi">360</span> %</strong></span>
+    </div>
+    <div class="calc__cta">
+      <a href="#" class="btn btn--primary btn--lg" data-wizard>Izradi ponudu <i data-lucide="arrow-right"></i></a>
+      <p class="calc__note">Okvirni izračun uz cijenu struje 0,18 €/kWh, prosječnu proizvodnju 1.150 kWh po kW godišnje i FZOEU poticaj (poziv EnU-6/26): do 50 % investicije, najviše 600 €/kW za elektranu i 350 €/kWh za bateriju. Višak predan u mrežu obračunat po prosječnoj otkupnoj cijeni. Točan izračun za vaš krov dobivate u besplatnoj ponudi.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · Why Larsoon -->
+<section id="zasto" class="section">
+  <div class="section__inner">
+    <div class="section-header section-header--center">
+      <span class="eyebrow">Zašto Larsoon</span>
+      <h2>Iskustvo koje se mjeri u elektranama.</h2>
+      <p class="lead">Tim s više od deset godina iskustva u energetici. Svaka prijava na Fond koju smo vodili — prošla je. Vodimo cijeli proces: projekt, papirologiju prema HEP-u i FZOEU-u, ugradnju i puštanje u pogon.</p>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-card__num">10+ <small>god</small></div>
+        <div class="stat-card__label">iskustva u solarnim projektima</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__num">300+</div>
+        <div class="stat-card__label">elektrana ugrađeno u Hrvatskoj</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__num stat-card__num--savings">0</div>
+        <div class="stat-card__label">odbijenih prijava na FZOEU</div>
+      </div>
+    </div>
+    <div class="photo-row">
+      <div class="photo-row__item"><img src="assets/radovi-05-web.jpg" alt="Solarna elektrana na krovu obiteljske kuće" loading="lazy"></div>
+      <div class="photo-row__item"><img src="assets/radovi-04-web.jpg" alt="Crni solarni paneli na tamnom krovu" loading="lazy"></div>
+      <div class="photo-row__item"><img src="assets/radovi-01-web.jpg" alt="Dron snimka solarne elektrane u naselju" loading="lazy"></div>
+    </div>
+    <div class="link-more">
+      <a href="#radovi">Pogledajte naše radove →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · How it works -->
+<section id="kako" class="section section--tint">
+  <div class="section__inner">
+    <div class="section-header section-header--center">
+      <span class="eyebrow">Ključ u ruke</span>
+      <h2>Kako funkcionira — od izračuna do vlastite struje</h2>
+      <p class="lead">Cijeli proces vodimo mi — vi birate, mi izvodimo.</p>
+    </div>
+    <div class="steps">
+      <div class="step step--1">
+        <div class="step__head">
+          <div class="step__num">1</div>
+          <span class="step__badge">ponuda za 10 min</span>
+        </div>
+        <h3>Izračunajte uštedu</h3>
+        <p>Ispunite upitnik za 3 minute — personalizirana ponuda s izračunom stiže na vaš e-mail za 10 minuta.</p>
+      </div>
+      <div class="step step--2">
+        <div class="step__head">
+          <div class="step__num">2</div>
+          <span class="step__badge">tjedni 1–5</span>
+        </div>
+        <h3>Projekt i odobrenja</h3>
+        <p>U prvom tjednu izrađujemo idejni projekt i šaljemo zahtjev prema HEP-u, a vodimo i prijavu na FZOEU. HEP-ovo odobrenje stiže između 2. i 5. tjedna — bez ijednog papira s vaše strane.</p>
+      </div>
+      <div class="step step--3">
+        <div class="step__head">
+          <div class="step__num">3</div>
+          <span class="step__badge">tjedni 6–7</span>
+        </div>
+        <h3>Montaža</h3>
+        <p>Naši certificirani timovi ugrađuju sustav bilo gdje u Hrvatskoj.</p>
+      </div>
+      <div class="step step--4">
+        <div class="step__head">
+          <div class="step__num">4</div>
+          <span class="step__badge">tjedni 7–11</span>
+        </div>
+        <h3>Brojilo i trajni pogon</h3>
+        <p>HEP zamjenjuje brojilo dvosmjernim (tjedni 6–10) i elektrana ide u trajni pogon — vaša struja teče najkasnije za 11 tjedana.</p>
+      </div>
+    </div>
+    <p class="steps-note">Od ponude do vlastite struje: tipično 7 do 11 tjedana.</p>
+    <div class="steps-cta">
+      <p>Spremni? Krenite od izračuna.</p>
+      <a href="#" class="btn btn--primary btn--md" data-wizard>Izradi ponudu <i data-lucide="arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · Solutions -->
+<section id="rjesenja" class="section">
+  <div class="section__inner">
+    <div class="section-header section-header--center">
+      <span class="eyebrow">Naša rješenja</span>
+      <h2>Sve za vlastitu energiju.</h2>
+      <p class="lead">Za kućanstva i tvrtke — od krova do punjača.</p>
+    </div>
+    <div class="cards">
+      <div class="sol-card">
+        <div class="sol-card__img"><img src="assets/rjesenja-solar-web.jpg" alt="Solarna elektrana na krovu obiteljske kuće" loading="lazy"></div>
+        <div class="sol-card__body">
+          <h3>Solarne elektrane</h3>
+          <p>Fotonaponski sustavi ključ u ruke za krovove obiteljskih kuća — do 20 kW, s 0 % PDV-a na isporuku i ugradnju.</p>
+        </div>
+      </div>
+      <div class="sol-card">
+        <div class="sol-card__img"><img src="assets/rjesenja-baterija-web.jpg" alt="Kućna baterija na zidu" loading="lazy"></div>
+        <div class="sol-card__body">
+          <h3>Baterijski sustavi</h3>
+          <p>Spremnici energije podižu samopotrošnju s ~30 % na ~70 % — vlastita struja i navečer, kad je mreža najskuplja. Od 2026. i baterije sufinancira FZOEU.</p>
+        </div>
+      </div>
+      <div class="sol-card">
+        <div class="sol-card__img"><img src="assets/rjesenja-punjac-web.jpg" alt="Kućni punjač za električno vozilo" loading="lazy"></div>
+        <div class="sol-card__body">
+          <h3>Punjači za električna vozila</h3>
+          <p>Kućni i poslovni punjači — vozite na vlastitu sunčevu energiju.</p>
+        </div>
+      </div>
+    </div>
+    <p class="sol-note">Imate poslovni objekt ili halu? Radimo i veće sustave — <a href="#kontakt">javite nam se za ponudu</a>.</p>
+  </div>
+</section>
+
+<!-- 8 · Services -->
+<section id="usluge" class="section section--tint">
+  <div class="section__inner">
+    <div class="section-header section-header--center">
+      <span class="eyebrow">Naše usluge</span>
+      <h2>Sve na jednom mjestu — od ideje do održavanja</h2>
+    </div>
+    <div class="services">
+      <div class="service">
+        <span class="chip chip--cyan"><i data-lucide="drafting-compass"></i></span>
+        <h3>Projektiranje</h3>
+        <p>Idejni i glavni projekt elektrane, prilagođen vašem krovu i potrošnji.</p>
+      </div>
+      <div class="service">
+        <span class="chip chip--savings"><i data-lucide="package"></i></span>
+        <h3>Prodaja opreme</h3>
+        <p>Provjereni paneli, inverteri i baterije vodećih proizvođača.</p>
+      </div>
+      <div class="service">
+        <span class="chip chip--indigo"><i data-lucide="wrench"></i></span>
+        <h3>Montaža</h3>
+        <p>Certificirani monteri, uredna instalacija i atesti — diljem Hrvatske.</p>
+      </div>
+      <div class="service">
+        <span class="chip chip--solar"><i data-lucide="sparkles"></i></span>
+        <h3>Čišćenje</h3>
+        <p>Redovito čišćenje panela za maksimalan prinos elektrane.</p>
+      </div>
+      <div class="service">
+        <span class="chip chip--cyan"><i data-lucide="activity"></i></span>
+        <h3>Nadzor i održavanje</h3>
+        <p>Praćenje proizvodnje i servis — vaša elektrana radi punim kapacitetom.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · Our work -->
+<section id="radovi" class="section">
+  <div class="section__inner">
+    <div class="section-header section-header--center">
+      <span class="eyebrow">Naši radovi</span>
+      <h2>Elektrane diljem Hrvatske.</h2>
+      <p class="lead">Više od 300 elektrana na krovovima diljem Hrvatske. Pogledajte izbor iz naših projekata.</p>
+    </div>
+    <div class="gallery">
+      <div class="gallery__item">
+        <img src="assets/radovi-05-web.jpg" alt="Obiteljska kuća, 17 kW" loading="lazy">
+        <span class="gallery__caption">Obiteljska kuća, 17 kW</span>
+      </div>
+      <div class="gallery__item">
+        <img src="assets/radovi-06-web.jpg" alt="Obiteljska kuća, 13 kW" loading="lazy">
+        <span class="gallery__caption">Obiteljska kuća, 13 kW</span>
+      </div>
+      <div class="gallery__item">
+        <img src="assets/radovi-04-web.jpg" alt="Full-black paneli, 10 kW" loading="lazy">
+        <span class="gallery__caption">Full-black paneli, 10 kW</span>
+      </div>
+      <div class="gallery__item">
+        <img src="assets/radovi-01-web.jpg" alt="Obiteljska kuća, 10 kW" loading="lazy">
+        <span class="gallery__caption">Obiteljska kuća, 10 kW</span>
+      </div>
+      <div class="gallery__item">
+        <img src="assets/radovi-02-web.jpg" alt="Obiteljska kuća, 10 kW" loading="lazy">
+        <span class="gallery__caption">Obiteljska kuća, 10 kW</span>
+      </div>
+      <div class="gallery__item">
+        <img src="assets/radovi-03-web.jpg" alt="Obiteljska kuća, 10 kW" loading="lazy">
+        <span class="gallery__caption">Obiteljska kuća, 10 kW</span>
+      </div>
+    </div>
+    <div class="warranty">
+      <span><i data-lucide="shield-check"></i>25 god jamstva na panele</span>
+      <span><i data-lucide="shield-check"></i>5 + 5 god na inverter</span>
+      <span><i data-lucide="shield-check"></i>2 god na radove</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section section--tint">
+  <div class="faq__inner">
+    <div class="section-header section-header--center">
+      <span class="eyebrow">Pitanja i odgovori</span>
+      <h2>Česta pitanja o solarnim elektranama</h2>
+    </div>
+    <div class="faq__list" id="faqList">
+      <div class="faq__item is-open">
+        <button type="button" class="faq__q" aria-expanded="true">
+          <span>Koliko košta solarna elektrana za kuću u 2026.?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq__a">Solarna elektrana ključ u ruke za obiteljsku kuću stoji okvirno 4.700 € za 5 kW, odnosno 8.800 € za 10 kW, s 0 % PDV-a na isporuku i ugradnju. Uz FZOEU poticaj do 6.000 € neto ulaganje je do 50 % niže. Točnu cijenu za svoj krov izračunajte našim kalkulatorom.</div>
+      </div>
+      <div class="faq__item">
+        <button type="button" class="faq__q" aria-expanded="false">
+          <span>Koje poticaje mogu dobiti u 2026.?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq__a">FZOEU poziv EnU-6/26 sufinancira do 50 % investicije: najviše 600 € po kW elektrane (do 6.000 €) i 350 € po kWh baterije (do 5.600 €). Kućanstva u riziku od energetskog siromaštva ostvaruju do 70 %. Prijave kreću 2. rujna 2026. putem sustava eFZOEU — mi vodimo cijelu prijavu za vas.</div>
+      </div>
+      <div class="faq__item">
+        <button type="button" class="faq__q" aria-expanded="false">
+          <span>Isplati li se solarna elektrana nakon ukidanja net-meteringa?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq__a">Da — ali se isplativost sada temelji na samopotrošnji. Od 1. 1. 2026. višak struje predan u mrežu obračunava se mjesečno po nižoj otkupnoj cijeni, dok svaki kWh koji potrošite iz vlastite elektrane vrijedi punih ~0,18 €. Uz dobro dimenzioniran sustav i FZOEU poticaj povrat je tipično 4,5–6 godina, a s baterijom godišnja ušteda gotovo se udvostručuje.</div>
+      </div>
+      <div class="faq__item">
+        <button type="button" class="faq__q" aria-expanded="false">
+          <span>Trebam li bateriju?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq__a">Bez baterije prosječno kućanstvo iskoristi oko 30 % proizvedene struje, a s baterijom oko 70 % — vlastitu struju trošite i navečer. Budući da FZOEU od 2026. sufinancira i baterije (350 €/kWh), baterija u pravilu ne produljuje povrat investicije, a znatno povećava uštedu.</div>
+      </div>
+      <div class="faq__item">
+        <button type="button" class="faq__q" aria-expanded="false">
+          <span>Koliko struje proizvodi solarna elektrana u Hrvatskoj?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq__a">Prosječno oko 1.150 kWh godišnje po kW instalirane snage — u kontinentalnoj Hrvatskoj oko 1.100 kWh, a u Dalmaciji do 1.400 kWh. Elektrana od 10 kW tako proizvede 11.000–14.000 kWh godišnje, što je više od prosječne godišnje potrošnje kućanstva.</div>
+      </div>
+      <div class="faq__item">
+        <button type="button" class="faq__q" aria-expanded="false">
+          <span>Koliko traje cijeli proces i što ja moram napraviti?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq__a">Gotovo ništa — Larsoon vodi projekt, prijavu na FZOEU, suglasnosti HEP-a, ugradnju i puštanje u pogon. Ponudu dobivate za 10 minuta, a cijeli proces do trajnog pogona tipično traje 7 do 11 tjedana, ovisno o rokovima HEP-a.</div>
+      </div>
+      <div class="faq__item">
+        <button type="button" class="faq__q" aria-expanded="false">
+          <span>Koja jamstva dobivam?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq__a">Do 25 godina jamstva na panele, 5 + 5 godina na inverter (5 godina osnovnog i 5 godina produljenog jamstva) i 2 godine na izvedene radove. Uz ugovor o održavanju pratimo proizvodnju vaše elektrane i reagiramo prije nego što kvar primijetite.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · Final CTA -->
+<section class="cta">
+  <span class="grad-rule"></span>
+  <span class="cta__glow"></span>
+  <div class="cta__inner">
+    <h2>Vaša ušteda je <span class="grad-text">3 minute</span> daleko.</h2>
+    <p>Ispunite upitnik u 3 minute — personalizirana ponuda s izračunom investicije, poticaja i povrata stiže na vaš e-mail za 10 minuta.</p>
+    <a href="#" class="btn btn--primary btn--lg" data-wizard>Izradi ponudu <i data-lucide="arrow-right"></i></a>
+  </div>
+</section>
+
+<!-- 11 · Contact -->
+<section id="kontakt" class="contact">
+  <div class="contact__grid">
+    <div>
+      <div class="section-header">
+        <span class="eyebrow">Kontakt</span>
+        <h2>Javite nam se.</h2>
+        <p class="lead">Imate pitanje prije izračuna? Odgovaramo unutar jednog radnog dana.</p>
+      </div>
+      <div class="contact__items">
+        <div class="contact__item">
+          <span class="chip chip--cyan"><i data-lucide="mail"></i></span>
+          <a href="mailto:info@larsoon.com">info@larsoon.com</a>
+        </div>
+        <div class="contact__item">
+          <span class="chip chip--savings"><i data-lucide="phone"></i></span>
+          <a href="tel:+385992495949">+385 99 249 5949</a>
+        </div>
+        <div class="contact__item">
+          <span class="chip chip--indigo"><i data-lucide="map-pin"></i></span>
+          <address>Trg Ljube Babića 28, 10450 Jastrebarsko</address>
+        </div>
+      </div>
+    </div>
+    <form class="form" id="contactForm" novalidate>
+      <div class="form__fields">
+        <div class="field">
+          <label for="fName">Ime i prezime <em>*</em></label>
+          <input type="text" id="fName" name="name" placeholder="Vaše ime" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="fEmail">E-mail <em>*</em></label>
+          <input type="email" id="fEmail" name="email" placeholder="ime@primjer.hr" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="fMsg">Poruka</label>
+          <textarea id="fMsg" name="message" rows="4" placeholder="Recite nam nešto o vašem krovu ili objektu…"></textarea>
+        </div>
+        <label class="gdpr">
+          <input type="checkbox" id="gdprCheck">
+          <span class="gdpr__box" aria-hidden="true">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#04232C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </span>
+          <span class="gdpr__label">Slažem se da Larsoon Energy koristi moje podatke za odgovor na upit. <a href="/pravila-privatnosti">Pravila privatnosti</a></span>
+        </label>
+        <button type="submit" class="btn btn--dark btn--md" id="formSubmit" disabled>Pošalji poruku</button>
+        <p class="form__hint" id="formHint">Za slanje poruke označite privolu iznad.</p>
+        <p class="form__error" id="formError">Slanje nije uspjelo. Pokušajte ponovno ili nam pišite izravno na <a href="mailto:info@larsoon.com">info@larsoon.com</a>.</p>
+      </div>
+      <div class="form__success">
+        <span class="chip chip--savings chip--lg"><i data-lucide="check"></i></span>
+        <h3>Poruka je poslana.</h3>
+        <p>Odgovaramo unutar jednog radnog dana.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- 12 · Footer -->
+<footer class="footer">
+  <div class="footer__grid">
+    <div>
+      <img src="assets/larsoon-logo-light.png" alt="Larsoon" class="footer__logo">
+      <p class="footer__about">Larsoon Energy d.o.o. — projektiranje, prodaja i ugradnja solarnih elektrana, baterijskih sustava i EV punjača.<br>info@larsoon.com · +385 99 249 5949<br>Trg Ljube Babića 28, 10450 Jastrebarsko<br>OIB: 59474815786</p>
+    </div>
+    <div>
+      <div class="footer__col-title">Rješenja</div>
+      <ul>
+        <li><a href="#rjesenja">Solarne elektrane</a></li>
+        <li><a href="#rjesenja">Baterijski sustavi</a></li>
+        <li><a href="#rjesenja">Punjači za EV</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__col-title">Usluge</div>
+      <ul>
+        <li><a href="#usluge">Projektiranje</a></li>
+        <li><a href="#usluge">Montaža</a></li>
+        <li><a href="#usluge">Nadzor i održavanje</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__col-title">Tvrtka</div>
+      <ul>
+        <li><a href="#zasto">O nama</a></li>
+        <li><a href="#radovi">Radovi</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="footer__bottom-inner">
+      <span>© 2026 Larsoon Energy d.o.o.</span>
+      <span class="footer__legal">
+        <a href="/pravila-privatnosti">Pravila privatnosti</a>
+        <a href="/kolacici">Kolačići</a>
+        <a href="/impressum">Impressum</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

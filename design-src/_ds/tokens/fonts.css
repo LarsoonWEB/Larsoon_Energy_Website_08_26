@@ -1,0 +1,8 @@
+/* ============================================================
+   LARSOON — Webfonts
+   Sora (display), Manrope (text), IBM Plex Mono (labels).
+   All three are open-source Google Fonts; the @import below
+   ships them to consumers of this design system.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
