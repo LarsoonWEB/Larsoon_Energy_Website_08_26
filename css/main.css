@@ -623,6 +623,12 @@ a:hover{ color:var(--cyan-600); }
   }
   .hero__img{ height:280px; }
 }
+@media (pointer:coarse){
+  .btn--sm{ min-height:44px; }
+  .footer ul a, .footer__legal a{ display:inline-block; padding-block:10px; }
+  .link-more a, .sol-note a{ display:inline-block; padding-block:10px; }
+  .contact__item a{ display:inline-flex; align-items:center; min-height:44px; }
+}
 @media (prefers-reduced-motion: reduce){
   *{ transition:none !important; animation:none !important; }
   html{ scroll-behavior:auto; }
