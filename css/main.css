@@ -622,6 +622,7 @@ h1, .section-header h2, .calc h2, .cta h2{ text-wrap:balance; }
 @media (max-width:940px){
   .hero__grid, .contact__grid{ grid-template-columns:1fr; }
   .trust__grid, .steps, .cards, .gallery, .footer__grid, .photo-row{ grid-template-columns:1fr 1fr; }
+  .footer__grid > div:first-child{ grid-column:1 / -1; }
   .nav__links{ display:none; }
   .nav__menu-btn{ display:flex; }
   .hero__aside{ justify-content:flex-start; }
