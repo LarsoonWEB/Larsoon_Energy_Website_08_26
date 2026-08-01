@@ -460,7 +460,11 @@ a:hover{ color:var(--cyan-600); }
   display:none; padding:0 22px 20px;
   font-family:var(--font-text); font-size:14.5px; line-height:1.65; color:var(--n-600);
 }
-.faq__item.is-open .faq__a{ display:block; }
+.faq__item.is-open .faq__a{ display:block; animation:faqOpen 180ms var(--ease); }
+@keyframes faqOpen{
+  from{ opacity:0; transform:translateY(-4px); }
+  to{ opacity:1; transform:translateY(0); }
+}
 
 /* ---------- 10 · Final CTA ---------- */
 .cta{ position:relative; background:var(--midnight); overflow:hidden; }
