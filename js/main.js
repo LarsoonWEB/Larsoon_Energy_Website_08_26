@@ -34,6 +34,23 @@
     a.addEventListener("click", function () { setMenu(false); });
   });
 
+  /* ---------- Scroll-spy: označi aktivnu sekciju u navigaciji ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav__links a[href^='#']"));
+  var spyTargets = navLinks
+    .map(function (a) { return document.querySelector(a.getAttribute("href")); })
+    .filter(Boolean);
+  if ("IntersectionObserver" in window && spyTargets.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        navLinks.forEach(function (a) {
+          a.classList.toggle("is-active", a.getAttribute("href") === "#" + en.target.id);
+        });
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    spyTargets.forEach(function (s) { spy.observe(s); });
+  }
+
   /* ---------- FZOEU banner ---------- */
   document.getElementById("bannerClose").addEventListener("click", function () {
     document.getElementById("fzoeuBanner").classList.add("is-closed");

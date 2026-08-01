@@ -97,6 +97,11 @@ a:hover{ color:var(--cyan-600); }
 }
 .nav__links a:hover{ color:#fff; }
 .nav__links a:focus-visible{ outline:2px solid var(--cyan); outline-offset:3px; }
+.nav__links a.is-active{
+  color:#fff;
+  text-decoration:underline; text-decoration-color:var(--cyan);
+  text-decoration-thickness:2px; text-underline-offset:6px;
+}
 .nav__actions{ display:flex; align-items:center; gap:10px; }
 .nav__menu-btn{
   display:none; width:44px; height:44px; align-items:center; justify-content:center;
