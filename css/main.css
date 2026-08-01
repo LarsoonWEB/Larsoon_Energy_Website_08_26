@@ -567,7 +567,7 @@ h1, .section-header h2, .calc h2, .cta h2{ text-wrap:balance; }
   max-width:var(--maxw); margin:0 auto; padding:64px var(--gutter) 48px;
   display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px;
 }
-.footer__logo{ height:96px; width:auto; margin-bottom:18px; }
+.footer__logo{ width:100%; max-width:360px; height:auto; margin-bottom:18px; }
 .footer__about{ font-family:var(--font-text); font-size:13.5px; line-height:1.7; margin:0; max-width:30ch; }
 .footer__col-title{
   font-family:var(--font-display); font-weight:600; font-size:13px; color:var(--n-300);
