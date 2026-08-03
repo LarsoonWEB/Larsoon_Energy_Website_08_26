@@ -684,8 +684,8 @@ a.service:hover{
   max-width:var(--maxw); margin:0 auto; padding:64px var(--gutter) 48px;
   display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px;
 }
-.footer__logo{ width:100%; max-width:360px; height:auto; margin-bottom:18px; }
-.footer__about{ font-family:var(--font-text); font-size:13.5px; line-height:1.7; margin:0; max-width:30ch; }
+.footer__logo{ width:100%; max-width:200px; height:auto; margin-bottom:16px; }
+.footer__about{ font-family:var(--font-text); font-size:13px; line-height:1.65; margin:0; max-width:34ch; }
 .footer__social{ display:flex; gap:10px; margin-top:18px; }
 .footer__social a{
   display:inline-flex; align-items:center; justify-content:center;
