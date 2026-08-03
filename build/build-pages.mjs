@@ -406,6 +406,8 @@ const PAGES = [
     specs: [
       { val: "1–2×", unit: "godišnje", label: "preporučena učestalost" },
       { val: "do 20", unit: "%", label: "gubitka prinosa zbog nečistoće" },
+      { val: "1", unit: "dan", label: "trajanje čišćenja tipične elektrane" },
+      { val: "100 %", unit: "", label: "demineralizirana voda, bez kemikalija" },
     ],
     sections: [
       {
