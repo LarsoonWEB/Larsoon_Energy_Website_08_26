@@ -207,6 +207,10 @@ const footer = (depth) => {
     <div>
       <img src="${up}assets/larsoon-logo-stacked.png" alt="Larsoon" class="footer__logo">
       <p class="footer__about">Larsoon Energy d.o.o. — projektiranje, prodaja i ugradnja solarnih elektrana, baterijskih sustava i EV punjača.<br>info@larsoon.com · +385 99 249 5949<br>Trg Ljube Babića 28, 10450 Jastrebarsko<br>OIB: 59474815786</p>
+      <div class="footer__social">
+        <a href="#" aria-label="LinkedIn — Larsoon Energy"><i data-lucide="linkedin"></i></a>
+        <a href="#" aria-label="Instagram — Larsoon Energy"><i data-lucide="instagram"></i></a>
+      </div>
     </div>
     <div>
       <div class="footer__col-title">Rješenja</div>
@@ -266,7 +270,9 @@ const articles = readdirSync(SRC)
   .sort((a, b) => (a.meta.publishedAt < b.meta.publishedAt ? 1 : -1));
 
 /* ---------- stranice članaka ---------- */
-for (const a of articles) {
+for (const [idx, a] of articles.entries()) {
+  const newer = idx > 0 ? articles[idx - 1] : null;
+  const older = idx < articles.length - 1 ? articles[idx + 1] : null;
   // uvijek 3 povezana članka: prvo ista kategorija, zatim najnoviji ostali
   const sameCat = articles.filter((r) => r.slug !== a.slug && r.meta.category === a.meta.category);
   const others = articles.filter((r) => r.slug !== a.slug && r.meta.category !== a.meta.category);
@@ -328,6 +334,17 @@ ${a.toc.map((t) => `        <li><a href="#${t.id}">${esc(t.text)}</a></li>`).joi
     </article>
   </div>
 
+  <nav class="article-nav" aria-label="Prethodni i sljedeći članak">
+${older ? `    <a class="article-nav__item" href="${older.slug}">
+      <span><i data-lucide="arrow-left"></i> Prethodni članak</span>
+      <strong>${esc(older.meta.title)}</strong>
+    </a>` : `    <span class="article-nav__item article-nav__item--empty" aria-hidden="true"></span>`}
+${newer ? `    <a class="article-nav__item article-nav__item--next" href="${newer.slug}">
+      <span>Sljedeći članak <i data-lucide="arrow-right"></i></span>
+      <strong>${esc(newer.meta.title)}</strong>
+    </a>` : `    <span class="article-nav__item article-nav__item--empty" aria-hidden="true"></span>`}
+  </nav>
+
   <div class="article__related">
     <h2>Povezani članci</h2>
     <div class="wiki-grid">
@@ -364,8 +381,8 @@ const indexPage = `${head({
 <main id="glavni" class="section">
   <div class="section__inner">
     <div class="section-header section-header--center">
-      <span class="eyebrow">Baza znanja</span>
-      <h2>Sve o solarnim elektranama, na jednom mjestu</h2>
+      <span class="eyebrow">Wiki</span>
+      <h2>Baza znanja o solarnim elektranama</h2>
       <p class="lead">Tehnika, propisi, novac i praksa — objašnjeno jednostavno, s brojkama koje vrijede za Hrvatsku.</p>
     </div>
 

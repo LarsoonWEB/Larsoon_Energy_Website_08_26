@@ -686,6 +686,16 @@ a.service:hover{
 }
 .footer__logo{ width:100%; max-width:360px; height:auto; margin-bottom:18px; }
 .footer__about{ font-family:var(--font-text); font-size:13.5px; line-height:1.7; margin:0; max-width:30ch; }
+.footer__social{ display:flex; gap:10px; margin-top:18px; }
+.footer__social a{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:44px; height:44px; border-radius:12px;
+  border:1px solid var(--slate-800); color:var(--n-400);
+  transition:border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.footer__social a:hover{ border-color:var(--cyan); color:var(--cyan); }
+.footer__social a:focus-visible{ outline:2px solid var(--cyan); outline-offset:2px; }
+.footer__social .lucide{ width:19px; height:19px; }
 .footer__col-title{
   font-family:var(--font-display); font-weight:600; font-size:13px; color:var(--n-300);
   margin-bottom:14px; letter-spacing:.02em;
@@ -883,6 +893,38 @@ a.service:hover{
   font-family:var(--font-text); font-size:14.5px; color:var(--n-300);
   margin:0 auto 20px; max-width:46ch; line-height:1.6;
 }
+.article-nav{
+  max-width:1060px; margin:44px auto 0; padding:0 var(--gutter);
+  display:grid; grid-template-columns:1fr 1fr; gap:16px;
+}
+.article-nav__item{
+  display:flex; flex-direction:column; gap:6px;
+  background:var(--white); border:1px solid var(--n-200); border-radius:16px;
+  padding:18px 22px; text-decoration:none;
+  transition:transform var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+a.article-nav__item:hover{
+  transform:translateY(-2px); border-color:var(--cyan-tint-2);
+  box-shadow:var(--shadow-sm), 0 14px 34px -24px rgba(11,20,28,.4);
+}
+.article-nav__item span{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:var(--font-mono); font-size:10.5px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--n-400);
+}
+.article-nav__item span .lucide{ width:13px; height:13px; }
+.article-nav__item strong{
+  font-family:var(--font-display); font-weight:600; font-size:15.5px;
+  color:var(--ink); line-height:1.35;
+}
+.article-nav__item--next{ text-align:right; }
+.article-nav__item--next span{ justify-content:flex-end; }
+.article-nav__item--empty{ border:none; background:transparent; }
+@media (max-width:640px){
+  .article-nav{ grid-template-columns:1fr; }
+  .article-nav__item--empty{ display:none; }
+}
+
 .article__related{
   max-width:1060px; margin:0 auto; padding:52px var(--gutter) var(--section-pad);
   border-top:1px solid var(--n-200); margin-top:56px;
