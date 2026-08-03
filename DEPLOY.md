@@ -1,5 +1,20 @@
 # Deployment — Larsoon landing na Vercel + povezivanje Quote wizarda
 
+## 0. Lokalni pregled — OBAVEZNO preko servera
+
+Stranica koristi rute bez `.html` nastavka (`/wiki`, `/rjesenja/solarne-elektrane`).
+Ako HTML datoteke otvoriš **dvoklikom**, poveznice neće raditi — preglednik tada
+nema server koji rutu prevodi u datoteku, pa `/wiki` traži mapu umjesto `wiki.html`.
+
+Pokreni lokalni server (bez ijedne vanjske ovisnosti):
+
+```bash
+node build/serve.mjs
+```
+
+Zatim otvori **http://localhost:4173**. Server oponaša Vercel: čiste rute i
+preusmjeravanja iz `vercel.json`. Zaustavlja se s Ctrl+C.
+
 Stranica je čisti statički site (HTML/CSS/JS, bez builda). `vercel.json` s
 `cleanUrls` već je u repozitoriju, pa pravne rute (`/impressum`,
 `/pravila-privatnosti`, `/kolacici`) rade bez ekstenzije odmah po deployu.
