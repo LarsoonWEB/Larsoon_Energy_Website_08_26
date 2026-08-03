@@ -111,7 +111,27 @@ wizard ima vlastitu GDPR privolu, linkaj `https://www.larsoon.com/pravila-privat
 
 ---
 
-## 3. Kasnije izmjene
+## 3. Generatori stranica
+
+Wiki članci i detaljne stranice Rješenja/Usluga generiraju se skriptama, pa se
+predložak (nav, footer, meta, JSON-LD) mijenja na jednom mjestu:
+
+```bash
+node build/build-wiki.mjs    # content/wiki/*.mdx  →  wiki.html + wiki/*.html
+node build/build-pages.mjs   # sadržaj u skripti   →  rjesenja/*.html, usluge/*.html
+```
+
+- **Novi wiki članak:** dodaj `.mdx` u `content/wiki/` (s frontmatterom
+  `title, excerpt, category, readTime, publishedAt, author`) i pokreni prvu
+  skriptu. Kategorije: `tehnicke-osnove`, `pravni-aspekti`,
+  `financijski-aspekti`, `prakticni-savjeti`.
+- **Izmjena teksta na stranici rješenja/usluge:** uredi konstantu `PAGES` u
+  `build/build-pages.mjs` i pokreni drugu skriptu.
+- Generirani `.html` se commita u repozitorij — Vercel ne pokreće build.
+- `build/`, `content/` i `design-src/` isključeni su iz deploya
+  preko `.vercelignore`.
+
+## 4. Kasnije izmjene
 
 - Sadržaj/stil: uredi datoteke → `git commit` → `git push` → Vercel automatski
   deploya (opcija A) ili `vercel --prod` (opcija B).

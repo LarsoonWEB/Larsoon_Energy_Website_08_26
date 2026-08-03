@@ -1,4 +1,8 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/rjesenja", "destination": "/#rjesenja", "permanent": false },
+    { "source": "/usluge", "destination": "/#usluge", "permanent": false }
+  ]
 }

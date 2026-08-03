@@ -69,6 +69,56 @@
     tlSteps.forEach(function (s) { s.classList.add("in-view"); });
   }
 
+  /* ---------- Wiki: pretraga i filtar po kategoriji ---------- */
+  var wikiGrid = document.getElementById("wikiGrid");
+  if (wikiGrid) {
+    var wikiCards = Array.prototype.slice.call(wikiGrid.querySelectorAll(".wiki-card"));
+    var wikiInput = document.getElementById("wikiSearch");
+    var wikiEmpty = document.getElementById("wikiEmpty");
+    var wikiFilters = Array.prototype.slice.call(document.querySelectorAll(".wiki-filter"));
+    var activeCat = "all";
+
+    function applyWikiFilter() {
+      var q = (wikiInput.value || "").trim().toLowerCase();
+      var shown = 0;
+      wikiCards.forEach(function (card) {
+        var okCat = activeCat === "all" || card.dataset.cat === activeCat;
+        var okText = !q || card.dataset.search.indexOf(q) !== -1;
+        var visible = okCat && okText;
+        card.hidden = !visible;
+        if (visible) shown++;
+      });
+      wikiEmpty.hidden = shown > 0;
+    }
+
+    wikiInput.addEventListener("input", applyWikiFilter);
+    wikiFilters.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        wikiFilters.forEach(function (b) { b.classList.remove("is-active"); });
+        btn.classList.add("is-active");
+        activeCat = btn.dataset.cat;
+        applyWikiFilter();
+      });
+    });
+  }
+
+  /* ---------- Članak: označi aktivni naslov u sadržaju ---------- */
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll(".toc a"));
+  if (tocLinks.length && "IntersectionObserver" in window) {
+    var headings = tocLinks
+      .map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); })
+      .filter(Boolean);
+    var tocSpy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        tocLinks.forEach(function (a) {
+          a.classList.toggle("is-active", a.getAttribute("href") === "#" + en.target.id);
+        });
+      });
+    }, { rootMargin: "-96px 0px -70% 0px" });
+    headings.forEach(function (h) { tocSpy.observe(h); });
+  }
+
   /* ---------- FZOEU banner ---------- */
   document.getElementById("bannerClose").addEventListener("click", function () {
     document.getElementById("fzoeuBanner").classList.add("is-closed");

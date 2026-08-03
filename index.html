@@ -45,7 +45,7 @@
       <a href="#kako">Kako funkcionira</a>
       <a href="#rjesenja">Rješenja</a>
       <a href="#radovi">Naši radovi</a>
-      <a href="#faq">Česta pitanja</a>
+      <a href="wiki">Wiki</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
     <div class="nav__actions">
@@ -61,7 +61,7 @@
     <a href="#kako">Kako funkcionira</a>
     <a href="#rjesenja">Rješenja</a>
     <a href="#radovi">Naši radovi</a>
-    <a href="#faq">Česta pitanja</a>
+    <a href="wiki">Wiki</a>
     <a href="#kontakt">Kontakt</a>
   </nav>
 </header>
@@ -366,29 +366,65 @@
       <p class="lead">Za kućanstva i tvrtke — od krova do punjača.</p>
     </div>
     <div class="cards">
-      <div class="sol-card">
+      <a class="sol-card" href="rjesenja/solarne-elektrane">
         <div class="sol-card__img"><img src="assets/rjesenja-solar-web.jpg" alt="Solarna elektrana na krovu obiteljske kuće" loading="lazy"></div>
         <div class="sol-card__body">
           <h3>Solarne elektrane</h3>
           <p>Fotonaponski sustavi ključ u ruke za krovove obiteljskih kuća — do 20 kW, s 0 % PDV-a na isporuku i ugradnju.</p>
+          <span class="sol-card__more">Saznajte više <i data-lucide="arrow-right"></i></span>
         </div>
-      </div>
-      <div class="sol-card">
+      </a>
+      <a class="sol-card" href="rjesenja/baterijski-sustavi">
         <div class="sol-card__img"><img src="assets/rjesenja-baterija-web.jpg" alt="Kućna baterija na zidu" loading="lazy"></div>
         <div class="sol-card__body">
           <h3>Baterijski sustavi</h3>
           <p>Spremnici energije podižu samopotrošnju s ~30 % na ~70 % — vlastita struja i navečer, kad je mreža najskuplja. Od 2026. i baterije sufinancira FZOEU.</p>
+          <span class="sol-card__more">Saznajte više <i data-lucide="arrow-right"></i></span>
         </div>
-      </div>
-      <div class="sol-card">
+      </a>
+      <a class="sol-card" href="rjesenja/punjaci-ev">
         <div class="sol-card__img"><img src="assets/rjesenja-punjac-web.jpg" alt="Kućni punjač za električno vozilo" loading="lazy"></div>
         <div class="sol-card__body">
           <h3>Punjači za električna vozila</h3>
           <p>Kućni i poslovni punjači — vozite na vlastitu sunčevu energiju.</p>
+          <span class="sol-card__more">Saznajte više <i data-lucide="arrow-right"></i></span>
         </div>
-      </div>
-    </div>
+      </a>
     <p class="sol-note">Imate poslovni objekt ili halu? Radimo i veće sustave — <a href="#kontakt">javite nam se za ponudu</a>.</p>
+  </div>
+</section>
+
+<!-- 7b · Wiki teaser -->
+<section class="section section--tint">
+  <div class="section__inner">
+    <div class="wiki-teaser__head">
+      <div class="section-header">
+        <span class="eyebrow">Baza znanja</span>
+        <h2>Naučite prije nego potpišete</h2>
+        <p class="lead">Tehnika, propisi, novac i praksa — objašnjeno jednostavno, s brojkama koje vrijede za Hrvatsku. Bez marketinga.</p>
+      </div>
+      <a class="wiki-teaser__all" href="wiki">Svi članci <i data-lucide="arrow-right"></i></a>
+    </div>
+    <div class="wiki-grid">
+      <a class="wiki-card" href="wiki/poticaji-i-subvencije-hrvatska-2026">
+        <span class="wiki-cat wiki-cat--savings">Financijski aspekti</span>
+        <h3>Poticaji i subvencije za solarne panele u Hrvatskoj 2026.</h3>
+        <p>FZOEU bespovratna sredstva, HBOR povoljni krediti i EU kohezijski fondovi — kompletni vodič kroz dostupne izvore financiranja.</p>
+        <span class="wiki-card__more">8 min čitanja <i data-lucide="arrow-right"></i></span>
+      </a>
+      <a class="wiki-card" href="wiki/neto-mjerenje-vs-neto-naplata">
+        <span class="wiki-cat wiki-cat--indigo">Pravni aspekti</span>
+        <h3>Neto mjerenje vs. neto naplata — što se promijenilo 2026.?</h3>
+        <p>Od 1. siječnja 2026. Hrvatska je prešla s neto mjerenja na neto naplatu. Što to konkretno znači za isplativost vašeg sustava?</p>
+        <span class="wiki-card__more">7 min čitanja <i data-lucide="arrow-right"></i></span>
+      </a>
+      <a class="wiki-card" href="wiki/isplativost-solarnih-panela-roi">
+        <span class="wiki-cat wiki-cat--savings">Financijski aspekti</span>
+        <h3>Isplativost solarnih panela — kako izračunati ROI?</h3>
+        <p>Period povrata investicije, 25-godišnja ušteda, ROI i utjecaj cijena struje — sve prije odluke o kupnji.</p>
+        <span class="wiki-card__more">6 min čitanja <i data-lucide="arrow-right"></i></span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -400,31 +436,36 @@
       <h2>Sve na jednom mjestu — od ideje do održavanja</h2>
     </div>
     <div class="services">
-      <div class="service">
+      <a class="service" href="usluge/projektiranje">
         <span class="chip chip--cyan"><i data-lucide="drafting-compass"></i></span>
         <h3>Projektiranje</h3>
         <p>Idejni i glavni projekt elektrane, prilagođen vašem krovu i potrošnji.</p>
-      </div>
-      <div class="service">
+        <span class="service__more">Saznajte više <i data-lucide="arrow-right"></i></span>
+      </a>
+      <a class="service" href="usluge/prodaja-opreme">
         <span class="chip chip--savings"><i data-lucide="package"></i></span>
         <h3>Prodaja opreme</h3>
         <p>Provjereni paneli, inverteri i baterije vodećih proizvođača.</p>
-      </div>
-      <div class="service">
+        <span class="service__more">Saznajte više <i data-lucide="arrow-right"></i></span>
+      </a>
+      <a class="service" href="usluge/montaza">
         <span class="chip chip--indigo"><i data-lucide="wrench"></i></span>
         <h3>Montaža</h3>
         <p>Certificirani monteri, uredna instalacija i atesti — diljem Hrvatske.</p>
-      </div>
-      <div class="service">
+        <span class="service__more">Saznajte više <i data-lucide="arrow-right"></i></span>
+      </a>
+      <a class="service" href="usluge/ciscenje">
         <span class="chip chip--solar"><i data-lucide="sparkles"></i></span>
         <h3>Čišćenje</h3>
         <p>Redovito čišćenje panela za maksimalan prinos elektrane.</p>
-      </div>
-      <div class="service">
+        <span class="service__more">Saznajte više <i data-lucide="arrow-right"></i></span>
+      </a>
+      <a class="service" href="usluge/nadzor-i-odrzavanje">
         <span class="chip chip--cyan"><i data-lucide="activity"></i></span>
         <h3>Nadzor i održavanje</h3>
         <p>Praćenje proizvodnje i servis — vaša elektrana radi punim kapacitetom.</p>
-      </div>
+        <span class="service__more">Saznajte više <i data-lucide="arrow-right"></i></span>
+      </a>
     </div>
   </div>
 </section>

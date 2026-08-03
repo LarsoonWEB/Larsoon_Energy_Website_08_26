@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Praćenje i nadzor solarnog sustava — što, kako i zašto? | Larsoon Wiki</title>
+<meta name="description" content="Solarni monitoring aplikacije, alarmni sustavi, ključni pokazatelji i kako prepoznati kada sustav ne radi kako treba — bez tehničkog predznanja.">
+<link rel="canonical" href="https://www.larsoon.com/wiki/monitoring-solarnog-sustava">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Praćenje i nadzor solarnog sustava — što, kako i zašto? | Larsoon Wiki">
+<meta property="og:description" content="Solarni monitoring aplikacije, alarmni sustavi, ključni pokazatelji i kako prepoznati kada sustav ne radi kako treba — bez tehničkog predznanja.">
+<meta property="og:image" content="https://www.larsoon.com/assets/og-larsoon-solarna-elektrana.jpg">
+<meta property="og:locale" content="hr_HR">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+<a class="skip-link" href="#glavni">Preskoči na sadržaj</a>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Praćenje i nadzor solarnog sustava — što, kako i zašto?",
+  "description": "Solarni monitoring aplikacije, alarmni sustavi, ključni pokazatelji i kako prepoznati kada sustav ne radi kako treba — bez tehničkog predznanja.",
+  "datePublished": "2026-01-20",
+  "author": {
+    "@type": "Organization",
+    "name": "Larsoon Energy d.o.o."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Larsoon Energy d.o.o.",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.larsoon.com/assets/favicon.png"
+    }
+  },
+  "mainEntityOfPage": "https://www.larsoon.com/wiki/monitoring-solarnog-sustava"
+}
+</script>
+<header class="nav">
+  <div class="nav__inner">
+    <a href="../" aria-label="Larsoon — početna"><img src="../assets/larsoon-logo-light.png" alt="Larsoon" class="nav__logo"></a>
+    <nav class="nav__links" aria-label="Glavna navigacija">
+      <a href="../#kalkulator">Ušteda</a>
+      <a href="../#zasto">Zašto Larsoon</a>
+      <a href="../#kako">Kako funkcionira</a>
+      <a href="../#rjesenja">Rješenja</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../#kontakt">Kontakt</a>
+    </nav>
+    <div class="nav__actions">
+      <a href="#" class="btn btn--primary btn--sm" data-wizard>Izradi ponudu</a>
+      <button class="nav__menu-btn" type="button" id="menuBtn" aria-label="Izbornik" aria-expanded="false" aria-controls="mobileNav">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+  <nav class="nav__mobile" id="mobileNav" aria-label="Mobilna navigacija">
+    <a href="../#kalkulator">Ušteda</a>
+    <a href="../#zasto">Zašto Larsoon</a>
+    <a href="../#kako">Kako funkcionira</a>
+    <a href="../#rjesenja">Rješenja</a>
+    <a href="../wiki">Wiki</a>
+    <a href="../#kontakt">Kontakt</a>
+  </nav>
+</header>
+
+<main id="glavni" class="article">
+  <div class="article__head">
+    <nav class="crumbs" aria-label="Putanja"><a href="../">Početna</a> <span>/</span> <a href="../wiki">Wiki</a> <span>/</span> <span aria-current="page">Praćenje i nadzor solarnog sustava — što, kako i zašto?</span></nav>
+    <span class="wiki-cat wiki-cat--solar">Praktični savjeti</span>
+    <h1>Praćenje i nadzor solarnog sustava — što, kako i zašto?</h1>
+    <p class="article__excerpt">Solarni monitoring aplikacije, alarmni sustavi, ključni pokazatelji i kako prepoznati kada sustav ne radi kako treba — bez tehničkog predznanja.</p>
+    <div class="article__meta">
+      <span><i data-lucide="clock"></i> 5 min čitanja</span>
+      <span><i data-lucide="calendar"></i> 20. siječnja 2026.</span>
+      <span><i data-lucide="user"></i> Larsoon Energy tim</span>
+    </div>
+  </div>
+
+  <div class="article__body">
+    <aside class="toc" aria-label="Sadržaj članka">
+      <div class="toc__title">Sadržaj</div>
+      <ul>
+        <li><a href="#zasto-je-monitoring-vazan">Zašto je monitoring važan?</a></li>
+        <li><a href="#kako-funkcionira-monitoring">Kako funkcionira monitoring?</a></li>
+        <li><a href="#sto-pratiti">Što pratiti?</a></li>
+        <li><a href="#crvene-zastavice-kada-reagirati">Crvene zastavice — kada reagirati?</a></li>
+        <li><a href="#larsoon-energy-aktivni-nadzor">Larsoon Energy aktivni nadzor</a></li>
+        <li><a href="#savjeti-za-vlasnike-bez-aktivnog-pracenja">Savjeti za vlasnike bez aktivnog praćenja</a></li>
+      </ul>
+    </aside>
+
+    <article class="prose">
+      <h2 id="zasto-je-monitoring-vazan">Zašto je monitoring važan?</h2>
+      <p>Solarni paneli su <strong>pasivni</strong> uređaji — ne signaliziraju kvar kao što to čini, primjerice, kućanski aparat. Bez nadzora, neproduktivni sustav može raditi tjednima ili čak mjesecima na smanjenom kapacitetu, a vi ćete to primijetiti tek na računu za struju.</p>
+      <p>Istraživanja pokazuju da sustavi s aktivnim monitoringom imaju <strong>15–20 % manji gubitak prinosa</strong> godišnje jer se problemi otkrivaju i rješavaju brzo.</p>
+      <h2 id="kako-funkcionira-monitoring">Kako funkcionira monitoring?</h2>
+      <p>Moderan inverter (string, mikro ili hibridni) ima ugrađen <strong>WiFi ili LAN modul</strong> koji svake nekoliko minuta šalje podatke o radu na cloud server. Vi pristupate tim podacima putem:</p>
+      <ul><li><strong>Mobilne aplikacije</strong> (iOS/Android) proizvođača invertera</li><li><strong>Web sučelja</strong> u pregledniku</li><li><strong>Nadzornih platformi trećih strana</strong> (SolarEdge, Fronius Solar.web, Huawei FusionSolar itd.)</li></ul>
+      <p>Larsoon Energy konfigurira monitoring pri instalaciji i provjerava je li sve ispravno postavljeno.</p>
+      <h2 id="sto-pratiti">Što pratiti?</h2>
+      <h3 id="dnevna-proizvodnja-kwh">Dnevna proizvodnja (kWh)</h3>
+      <p>Najvažniji pokazatelj. Usporedite s:</p>
+      <ul><li>Vašom procjenom za tu lokaciju i godišnje doba</li><li>Istim danom prošle godine (ako imate povijest)</li><li>Podacima o sunčanom vremenu tog dana</li></ul>
+      <h3 id="trenutna-snaga-w-ili-kw">Trenutna snaga (W ili kW)</h3>
+      <p>Daje vam uvid u <strong>trenutni</strong> rad sustava. U podne, vedrog ljetnog dana, 5 kWp sustav treba proizvoditi 4.000–4.500 W. Ako vidite znatno manje, nešto nije uredu.</p>
+      <h3 id="specificni-prinos-kwhkwp">Specifični prinos (kWh/kWp)</h3>
+      <p>Normalizirana vrijednost koja eliminira utjecaj veličine sustava. Tipični godišnji specifični prinos za Zagreb: <strong>1.100–1.300 kWh/kWp</strong>.</p>
+      <h3 id="performance-ratio">Performance ratio (%)</h3>
+      <p>Omjer stvarne i teorijski moguće proizvodnje. Zdrav sustav ima PR između <strong>75–85 %</strong>. Pad ispod 70 % ukazuje na problem.</p>
+      <h2 id="crvene-zastavice-kada-reagirati">Crvene zastavice — kada reagirati?</h2>
+      <p><strong>Odmah</strong> kontaktirajte servis ako:</p>
+      <ul><li>Inverter prikazuje <strong>grešku</strong> (error kod) i ne promijenite ništa u tjedan dana</li><li>Nema nikakve <strong>dnevne proizvodnje</strong> uz sunčano vrijeme</li><li>Prinos je <strong>više od 20 % ispod</strong> prosjeka za identičan dan prethodne godine</li><li>Aplikacija pokazuje da je sustav <strong>offline</strong> više od 24 sata</li></ul>
+      <p><strong>Pratite kroz tjedan</strong> ako:</p>
+      <ul><li>Prinos je malo niži od uobičajenog (5–10 %) — možda je jednostavno oblačniji period</li><li>Jedan segment panela prikazuje niži prinos od ostalih — potencijalno zasjenjenje ili prljavština</li></ul>
+      <h2 id="larsoon-energy-aktivni-nadzor">Larsoon Energy aktivni nadzor</h2>
+      <p>Uz uslugu <strong>Aktivno praćenje</strong> Larsoon Energy nadzire Vaš sustav umjesto Vas. Naš sustav automatski detektira:</p>
+      <ul><li>Iznenadni pad prinosa ispod praga normalnosti</li><li>Greške invertera</li><li>Komunikacijske prekide (sustav nije dostupan)</li><li>Usporedbu s klimatskim podacima za Vašu lokaciju (PV Output korelacija)</li></ul>
+      <p>Kada detektiramo anomaliju, kontaktiramo Vas proaktivno — bez da Vi morate pratiti aplikaciju.</p>
+      <h2 id="savjeti-za-vlasnike-bez-aktivnog-pracenja">Savjeti za vlasnike bez aktivnog praćenja</h2>
+      <p>Ako nemate uslugu aktivnog praćenja, minimalni preporučeni nadzor:</p>
+      <ol><li>Jednom tjedno provjerite <strong>tjednu proizvodnju</strong> u aplikaciji</li><li>Jednom godišnje usporedite <strong>godišnju proizvodnju</strong> s prethodnom godinom i s procjenom pri instalaciji</li><li>Nakon svakog jakog nevremena (tuča, oluja) vizualno pregledajte panele s tla</li></ol>
+      <p>Besplatne aplikacije poput <strong>PVOutput.org</strong> Vam pomažu pratiti i uspoređivati prinos s vašim susjedima u sličnim uvjetima.</p>
+
+      <div class="prose__cta">
+        <h3>Izračunajte uštedu za svoj krov</h3>
+        <p>Personalizirana ponuda s izračunom investicije, poticaja i povrata stiže na vaš e-mail za 10 minuta.</p>
+        <a href="#" class="btn btn--primary btn--md" data-wizard>Izradi ponudu <i data-lucide="arrow-right"></i></a>
+      </div>
+    </article>
+  </div>
+
+  <div class="article__related">
+    <h2>Povezani članci</h2>
+    <div class="wiki-grid">
+      <a class="wiki-card" href="ciscenje-i-odrzavanje-panela">
+        <span class="wiki-cat wiki-cat--solar">Praktični savjeti</span>
+        <h3>Čišćenje i održavanje solarnih panela — praktični vodič</h3>
+        <p>Koliko često čistiti panele, čime čistiti, što izbjegavati i kada zvati stručnjaka. Sve što trebate znati za maksimalni prinos sustava.</p>
+        <span class="wiki-card__more">Pročitajte više <i data-lucide="arrow-right"></i></span>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__grid">
+    <div>
+      <img src="../assets/larsoon-logo-stacked.png" alt="Larsoon" class="footer__logo">
+      <p class="footer__about">Larsoon Energy d.o.o. — projektiranje, prodaja i ugradnja solarnih elektrana, baterijskih sustava i EV punjača.<br>info@larsoon.com · +385 99 249 5949<br>Trg Ljube Babića 28, 10450 Jastrebarsko<br>OIB: 59474815786</p>
+    </div>
+    <div>
+      <div class="footer__col-title">Rješenja</div>
+      <ul>
+        <li><a href="../rjesenja/solarne-elektrane">Solarne elektrane</a></li>
+        <li><a href="../rjesenja/baterijski-sustavi">Baterijski sustavi</a></li>
+        <li><a href="../rjesenja/punjaci-ev">Punjači za EV</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__col-title">Usluge</div>
+      <ul>
+        <li><a href="../usluge/projektiranje">Projektiranje</a></li>
+        <li><a href="../usluge/montaza">Montaža</a></li>
+        <li><a href="../usluge/nadzor-i-odrzavanje">Nadzor i održavanje</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer__col-title">Tvrtka</div>
+      <ul>
+        <li><a href="../wiki">Wiki</a></li>
+        <li><a href="../#radovi">Radovi</a></li>
+        <li><a href="../#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="footer__bottom-inner">
+      <span>© 2026 Larsoon Energy d.o.o.</span>
+      <span class="footer__legal">
+        <a href="../pravila-privatnosti">Pravila privatnosti</a>
+        <a href="../kolacici">Kolačići</a>
+        <a href="../impressum">Impressum</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
+<script src="../js/main.js" defer></script>
+</body>
+</html>
