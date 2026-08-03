@@ -5,6 +5,8 @@
 (function () {
   "use strict";
 
+  document.documentElement.classList.add("js");
+
   // URL upitnika za ponudu — postaviti kada wizard bude live.
   var WIZARD_URL = "#";
   document.querySelectorAll("[data-wizard]").forEach(function (a) {
@@ -49,6 +51,22 @@
       });
     }, { rootMargin: "-40% 0px -55% 0px" });
     spyTargets.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ---------- Scroll reveal: koraci hodograma ulaze postupno ---------- */
+  var tlSteps = document.querySelectorAll(".tl__step");
+  if ("IntersectionObserver" in window && tlSteps.length) {
+    var reveal = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add("in-view");
+          reveal.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+    tlSteps.forEach(function (s) { reveal.observe(s); });
+  } else {
+    tlSteps.forEach(function (s) { s.classList.add("in-view"); });
   }
 
   /* ---------- FZOEU banner ---------- */
