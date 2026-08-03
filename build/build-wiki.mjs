@@ -267,11 +267,10 @@ const articles = readdirSync(SRC)
 
 /* ---------- stranice članaka ---------- */
 for (const a of articles) {
-  const related = articles
-    .filter((r) => r.slug !== a.slug && r.meta.category === a.meta.category)
-    .slice(0, 2);
-  const fallback = articles.filter((r) => r.slug !== a.slug).slice(0, 2);
-  const rel = related.length ? related : fallback;
+  // uvijek 3 povezana članka: prvo ista kategorija, zatim najnoviji ostali
+  const sameCat = articles.filter((r) => r.slug !== a.slug && r.meta.category === a.meta.category);
+  const others = articles.filter((r) => r.slug !== a.slug && r.meta.category !== a.meta.category);
+  const rel = sameCat.concat(others).slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
