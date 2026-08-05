@@ -1265,6 +1265,17 @@ a.article-nav__item:hover{
   /* Kontakt: forma bez okvira — polja preko cijele širine */
   .form{ border:0; border-radius:0; padding:0; box-shadow:none; background:transparent; }
   .contact__items{ margin-top:20px; }
+
+  /* Runda 3: tekst koji postoji samo na mobitelu (npr. skraćeni kontakt uvod) */
+  .u-d-hide{ display:inline; }
+
+  /* Sekcija "Zašto Larsoon" je skrivena na mobitelu — sakrij i link u izborniku */
+  .nav__mobile a[href="#zasto"]{ display:none; }
+}
+
+/* Tekst vidljiv samo na malim ekranima (mobilna zamjena za dulji tekst) */
+@media (min-width:581px){
+  .u-d-hide{ display:none; }
 }
 
 /* FAQ "Prikaži sva pitanja" — vidljiv samo na mobitelu uz JS */
