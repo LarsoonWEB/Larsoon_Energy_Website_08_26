@@ -98,7 +98,11 @@ h1, .section-header h2, .calc h2, .cta h2{ text-wrap:balance; }
   max-width:1360px; margin:0 auto; padding:14px clamp(20px,3vw,40px);
   display:flex; align-items:center; justify-content:space-between; gap:24px;
 }
-.nav__logo{ height:34px; width:auto; }
+.nav__logo{
+  height:34px; width:auto; display:block;
+  /* flex može stisnuti sidro — logo se tada skalira proporcionalno, nikad razvučen */
+  object-fit:contain; object-position:left center;
+}
 .nav__links{ display:flex; gap:clamp(26px,2.4vw,36px); align-items:center; }
 .nav__links a{
   font-family:var(--font-text); font-size:14px; font-weight:500;
@@ -1274,6 +1278,12 @@ a.article-nav__item:hover{
 
   /* Sekcija "Zašto Larsoon" je skrivena na mobitelu — sakrij i link u izborniku */
   .nav__mobile a[href="#zasto"]{ display:none; }
+
+  /* Nav: manji logo i CTA da sve stane bez gnječenja logotipa */
+  .nav__inner{ gap:12px; }
+  .nav__logo{ height:22px; }
+  .nav__actions{ gap:8px; }
+  .nav__actions .btn--sm{ font-size:13px; padding:9px 12px; }
 }
 
 /* Tekst vidljiv samo na malim ekranima (mobilna zamjena za dulji tekst) */
