@@ -7,8 +7,8 @@
 
   document.documentElement.classList.add("js");
 
-  // URL upitnika za ponudu — postaviti kada wizard bude live.
-  var WIZARD_URL = "#";
+  // URL upitnika za ponudu (Quote wizard)
+  var WIZARD_URL = "https://www.ponuda.larsoon.com";
   document.querySelectorAll("[data-wizard]").forEach(function (a) {
     a.href = WIZARD_URL;
   });
