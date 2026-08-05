@@ -139,7 +139,7 @@ function renderBody(md) {
 }
 
 /* ---------- zajednički dijelovi stranice ---------- */
-const head = ({ title, description, canonical, depth }) => {
+const head = ({ title, description, canonical, depth, ogType = "article" }) => {
   const up = "../".repeat(depth);
   return `<!DOCTYPE html>
 <html lang="hr">
@@ -149,7 +149,7 @@ const head = ({ title, description, canonical, depth }) => {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="https://www.larsoon.com${canonical}">
-<meta property="og:type" content="article">
+<meta property="og:type" content="${ogType}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="https://www.larsoon.com/assets/og-larsoon-solarna-elektrana.jpg">
@@ -182,7 +182,7 @@ const nav = (depth) => {
       <a href="${up}#kontakt">Kontakt</a>
     </nav>
     <div class="nav__actions">
-      <a href="#" class="btn btn--primary btn--sm" data-wizard>Izradi ponudu</a>
+      <a href="#" class="btn btn--primary btn--sm" data-wizard>Izradite ponudu</a>
       <button class="nav__menu-btn" type="button" id="menuBtn" aria-label="Izbornik" aria-expanded="false" aria-controls="mobileNav">
         <i data-lucide="menu"></i>
       </button>
@@ -328,8 +328,8 @@ ${a.toc.map((t) => `        <li><a href="#${t.id}">${esc(t.text)}</a></li>`).joi
 
       <div class="prose__cta">
         <h3>Izračunajte uštedu za svoj krov</h3>
-        <p>Personalizirana ponuda s izračunom investicije, poticaja i povrata stiže na vaš e-mail za 10 minuta.</p>
-        <a href="#" class="btn btn--primary btn--md" data-wizard>Izradi ponudu <i data-lucide="arrow-right"></i></a>
+        <p>Ponuda s izračunom investicije, poticaja i povrata za vaš krov stiže na e-mail za 10 minuta.</p>
+        <a href="#" class="btn btn--primary btn--md" data-wizard>Izradite ponudu <i data-lucide="arrow-right"></i></a>
       </div>
     </article>
   </div>
@@ -372,11 +372,12 @@ const catCounts = {};
 for (const a of articles) catCounts[a.meta.category] = (catCounts[a.meta.category] || 0) + 1;
 
 const indexPage = `${head({
-  title: "Wiki — sve o solarnim elektranama | Larsoon",
+  title: "Solarne elektrane — vodiči, cijene i propisi | Larsoon Wiki",
   description:
     "Baza znanja o solarnim elektranama u Hrvatskoj: tehničke osnove, pravni okvir, isplativost i praktični savjeti. Bez marketinga, samo činjenice.",
   canonical: "/wiki",
   depth: 0,
+  ogType: "website",
 })}${nav(0)}
 <main id="glavni" class="section">
   <div class="section__inner">
