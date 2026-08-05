@@ -24,11 +24,11 @@ const PAGES = [
     slug: "solarne-elektrane",
     section: "Rješenja",
     eyebrow: "Solarne elektrane",
-    title: "Solarne elektrane ključ u ruke",
+    title: "Solarna elektrana za kuću — ključ u ruke",
     lead: "Fotonaponski sustavi za krovove obiteljskih kuća i poslovnih objekata — od dimenzioniranja i projekta, preko papirologije prema HEP-u i FZOEU-u, do montaže i puštanja u pogon. Vi potpisujete, sve ostalo vodimo mi.",
-    metaTitle: "Solarne elektrane ključ u ruke — cijena i ugradnja | Larsoon",
+    metaTitle: "Solarna elektrana za kuću — cijena i ugradnja 2026. | Larsoon",
     metaDesc:
-      "Solarna elektrana za kuću do 20 kW, s 0 % PDV-a i FZOEU poticajem do 6.000 €. Projektiranje, HEP, montaža i puštanje u pogon — sve vodi Larsoon Energy.",
+      "Solarna elektrana ključ u ruke od 4.700 € za 5 kW, uz 0 % PDV-a i FZOEU poticaj do 6.000 €. Projektiranje, HEP, montaža i puštanje u pogon — Larsoon Energy.",
     img: "assets/rjesenja-solar-web.jpg",
     imgAlt: "Solarna elektrana na krovu obiteljske kuće",
     specs: [
@@ -57,7 +57,7 @@ const PAGES = [
             icon: "wrench",
             tint: "indigo",
             t: "Nosiva konstrukcija",
-            d: "Aluminijska podkonstrukcija prilagođena tipu krova — crijep, lim, ravni krov — s ispitanim opterećenjem na vjetar i snijeg.",
+            d: "Aluminijska potkonstrukcija prilagođena tipu krova — crijep, lim, ravni krov — s ispitanim opterećenjem na vjetar i snijeg.",
           },
           {
             icon: "shield-check",
@@ -65,6 +65,13 @@ const PAGES = [
             t: "Zaštita i mjerenje",
             d: "Prenaponska zaštita, DC i AC rastavljači, ožičenje i uređaj za praćenje proizvodnje s pristupom putem aplikacije.",
           },
+        ],
+      },
+      {
+        h: "Koliko košta solarna elektrana za kuću?",
+        prose: [
+          'Elektrana od 10 kW ključ u ruke stoji okvirno <strong>8.800 €</strong>, s 0 % PDV-a na isporuku i ugradnju. Uz FZOEU poticaj — do 6.000 €, a najviše 50 % investicije — neto ulaganje pada na otprilike <strong>4.400 €</strong>.',
+          'Točna cijena ovisi o krovu, potrošnji i opremi koju odaberete, pa ove brojke uzmite kao orijentir. Za grubu računicu poslužite se <a href="../#kalkulator">kalkulatorom</a>, a besplatna ponuda s točnim izračunom za vaš krov stiže na e-mail za 10 minuta.',
         ],
       },
       {
@@ -86,9 +93,9 @@ const PAGES = [
     slug: "baterijski-sustavi",
     section: "Rješenja",
     eyebrow: "Baterijski sustavi",
-    title: "Baterijski sustavi za vlastitu struju i navečer",
+    title: "Baterija za solarnu elektranu — vlastita struja i navečer",
     lead: "Spremnik energije pohranjuje višak proizveden danju i vraća ga kad zaista trošite — ujutro i navečer. Samopotrošnja raste s otprilike 30 % na oko 70 %, a od 2026. i baterije sufinancira FZOEU.",
-    metaTitle: "Baterijski sustavi za solarne elektrane — cijena i poticaji | Larsoon",
+    metaTitle: "Baterija za solarnu elektranu — cijena i poticaji | Larsoon",
     metaDesc:
       "Baterija podiže samopotrošnju s ~30 % na ~70 %. FZOEU sufinancira 350 € po kWh baterije, do 5.600 €. Dimenzioniranje, ugradnja i puštanje u pogon — Larsoon Energy.",
     img: "assets/rjesenja-baterija-web.jpg",
@@ -107,7 +114,7 @@ const PAGES = [
             icon: "sun-moon",
             tint: "cyan",
             t: "Struja kad je najskuplja",
-            d: "Energija proizvedena u podne troši se navečer, u vršnom tarifnom razdoblju, umjesto da se predaje mreži po niskoj otkupnoj cijeni.",
+            d: "Energija proizvedena u podne troši se navečer, dok još vrijedi viša tarifa, umjesto da se predaje mreži po niskoj otkupnoj cijeni.",
           },
           {
             icon: "trending-up",
@@ -148,17 +155,17 @@ const PAGES = [
     slug: "punjaci-ev",
     section: "Rješenja",
     eyebrow: "Punjači za električna vozila",
-    title: "Punjači za električna vozila",
-    lead: "Kućni i poslovni punjači povezani s vašom elektranom — vozite na vlastitoj sunčevoj energiji umjesto na struji iz mreže. Ugradnju, zaštitu i pametno upravljanje punjenjem radimo zajedno sa solarnim sustavom ili naknadno.",
-    metaTitle: "Punjači za električna vozila — kućni i poslovni | Larsoon",
+    title: "Punjači za električne automobile — kućni i poslovni",
+    lead: "Kućni i poslovni punjači povezani s vašom elektranom — automobil punite strujom s vlastitog krova umjesto iz mreže. Ugrađujemo ih zajedno sa solarnim sustavom ili naknadno, sa svom potrebnom zaštitom i automatskim punjenjem viškom proizvodnje.",
+    metaTitle: "Kućni punjač za električni auto (wallbox) | Larsoon",
     metaDesc:
-      "Ugradnja wallbox punjača za električna vozila, povezanih sa solarnom elektranom. Punjenje viškom vlastite struje, 7,4 do 22 kW. Larsoon Energy, cijela Hrvatska.",
+      "Kućni punjač za električni auto (wallbox) povezan sa solarnom elektranom — punite viškom vlastite struje. Snaga 7,4 do 22 kW, ugradnja diljem Hrvatske.",
     img: "assets/rjesenja-punjac-web.jpg",
     imgAlt: "Kućni punjač za električno vozilo na zidu kuće",
     specs: [
       { val: "7,4–22", unit: "kW", label: "snaga punjenja" },
       { val: "Type 2", unit: "", label: "europski standard priključka" },
-      { val: "~0,04", unit: "€/kWh", label: "trošak vlastite struje umjesto otkupa" },
+      { val: "~0,04", unit: "€/kWh", label: "otkupna cijena viška koji umjesto u mrežu ide u auto" },
       { val: "2", unit: "god", label: "jamstva na izvedene radove" },
     ],
     sections: [
@@ -318,7 +325,7 @@ const PAGES = [
       {
         h: "Kako biramo proizvođače",
         prose: [
-          "Jamstvo od 25 godina vrijedi samo ako proizvođač postoji za 25 godina i ako se reklamacija rješava u Hrvatskoj, a ne prekomorskom poštom. Zato radimo s <strong>proizvođačima koji imaju servisnu mrežu u regiji</strong>.",
+          "Jamstvo od 25 godina vrijedi samo ako će proizvođač postojati i za 25 godina i ako se reklamacija rješava u Hrvatskoj, a ne prekomorskom poštom. Zato radimo s <strong>proizvođačima koji imaju servisnu mrežu u regiji</strong>.",
           "Uz isporuku s ugradnjom PDV na opremu iznosi <strong>0 %</strong>, što je razlika koju u ukupnoj investiciji osjetite odmah.",
         ],
       },
@@ -397,7 +404,7 @@ const PAGES = [
     section: "Usluge",
     eyebrow: "Čišćenje",
     title: "Čišćenje solarnih panela",
-    lead: "Prašina, pelud, ptičji izmet i naslage nakon zime smanjuju prinos elektrane. Redovito čišćenje mekom vodom i odgovarajućom opremom vraća proizvodnju na projektiranu razinu bez rizika od oštećenja stakla ili premaza.",
+    lead: "Prašina, pelud, ptičji izmet i naslage nakon zime smanjuju prinos elektrane. Redovito čišćenje demineraliziranom vodom i odgovarajućom opremom vraća proizvodnju na projektiranu razinu, bez rizika od oštećenja stakla ili premaza.",
     metaTitle: "Čišćenje solarnih panela — cijena i učestalost | Larsoon",
     metaDesc:
       "Profesionalno čišćenje solarnih panela demineraliziranom vodom. Vraća prinos smanjen zbog prašine, peludi i naslaga. Larsoon Energy, cijela Hrvatska.",
@@ -443,7 +450,7 @@ const PAGES = [
         h: "Koliko često je stvarno potrebno",
         prose: [
           "U većini krajeva Hrvatske kiša odradi najveći dio posla, pa je <strong>jednom godišnje</strong> dovoljno. Češće čišćenje ima smisla ako ste blizu prometnice, poljoprivrednih površina, gradilišta ili ako na krovu ima ptica.",
-          "Nakupljena nečistoća može smanjiti prinos i do <strong>20 %</strong>, a najviše štete radi neravnomjerno zaprljanje: zasjenjena ćelija povlači cijeli string prema dolje.",
+          "Nakupljena nečistoća može smanjiti prinos i do <strong>20 %</strong>, a najviše štete radi neravnomjerno zaprljanje: jedna jače zaprljana ćelija povlači cijeli string prema dolje.",
         ],
       },
     ],
@@ -503,7 +510,7 @@ const PAGES = [
       {
         h: "Zašto je nadzor isplativiji od reakcije",
         prose: [
-          "Elektrana bez nadzora najčešće se otkrije kao neispravna tek kad stigne <strong>godišnji obračun</strong> — a tada je izgubljena proizvodnja cijele sezone nepovratna. Jedan neispravan string kroz godinu dana lako vrijedi više od ugovora o održavanju.",
+          "Kvar na elektrani bez nadzora najčešće se primijeti tek kad stigne <strong>godišnji obračun</strong> — a tada je izgubljena proizvodnja cijele sezone nepovratna. Jedan neispravan string kroz godinu dana lako vrijedi više od ugovora o održavanju.",
           "Uz redovito praćenje elektrana kroz <strong>25 godina vijeka</strong> radi blizu projektiranog prinosa, što je razlika koja se izravno vidi u periodu povrata investicije.",
         ],
       },
@@ -583,7 +590,7 @@ ${JSON.stringify(jsonLd, null, 2)}
       <a href="${up}#kontakt">Kontakt</a>
     </nav>
     <div class="nav__actions">
-      <a href="#" class="btn btn--primary btn--sm" data-wizard>Izradi ponudu</a>
+      <a href="#" class="btn btn--primary btn--sm" data-wizard>Izradite ponudu</a>
       <button class="nav__menu-btn" type="button" id="menuBtn" aria-label="Izbornik" aria-expanded="false" aria-controls="mobileNav">
         <i data-lucide="menu"></i>
       </button>
@@ -610,7 +617,7 @@ ${JSON.stringify(jsonLd, null, 2)}
         <h1>${esc(p.title)}</h1>
         <p class="detail-hero__lead">${esc(p.lead)}</p>
         <div class="detail-hero__ctas">
-          <a href="#" class="btn btn--primary btn--md" data-wizard>Izradi ponudu <i data-lucide="arrow-right"></i></a>
+          <a href="#" class="btn btn--primary btn--md" data-wizard>Izradite ponudu <i data-lucide="arrow-right"></i></a>
           <a href="${up}#kontakt" class="btn btn--ghost-on-dark btn--md">Kontaktirajte nas</a>
         </div>
       </div>
@@ -687,9 +694,9 @@ ${p.cross
     <span class="grad-rule"></span>
     <span class="cta__glow"></span>
     <div class="cta__inner">
-      <h2>Vaša ušteda je <span class="grad-text">3 minute</span> daleko.</h2>
-      <p>Ispunite upitnik u 3 minute — personalizirana ponuda s izračunom investicije, poticaja i povrata stiže na vaš e-mail za 10 minuta.</p>
-      <a href="#" class="btn btn--primary btn--lg" data-wizard>Izradi ponudu <i data-lucide="arrow-right"></i></a>
+      <h2>Od ponude vas dijele <span class="grad-text">3 minute</span>.</h2>
+      <p>Ispunite upitnik u 3 minute — ponuda s izračunom investicije, poticaja i povrata za vaš krov stiže na e-mail za 10 minuta.</p>
+      <a href="#" class="btn btn--primary btn--lg" data-wizard>Izradite ponudu <i data-lucide="arrow-right"></i></a>
     </div>
   </section>
 </main>
