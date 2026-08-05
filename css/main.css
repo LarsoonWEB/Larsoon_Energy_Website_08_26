@@ -1143,10 +1143,9 @@ a.article-nav__item:hover{
   .tl__card{ border:0; background:transparent; box-shadow:none; padding:2px 0 0; border-radius:0; }
   .tl__step{ padding-bottom:24px; }
   .tl__step:hover .tl__card{ transform:none; box-shadow:none; border-color:transparent; }
-  /* Glava koraka: naslov preko cijele širine, oznake složene ispod njega */
+  /* Glava koraka: naslov preko cijele širine, oznake u redu ispod njega */
   .tl__head{ flex-direction:column; align-items:flex-start; gap:8px; }
   .tl__card h3{ font-size:16px; min-width:0; flex:none; width:100%; }
-  .tl__tags{ flex-direction:column; align-items:flex-start; gap:5px; }
   html.js .tl__card > p{ display:none; }
   html.js .tl__step.is-open .tl__card > p{ display:block; margin-top:8px; animation:faqOpen 180ms var(--ease); }
   html.js .tl__head{ cursor:pointer; position:relative; padding-right:28px; margin-bottom:0; }
