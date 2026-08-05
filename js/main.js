@@ -69,6 +69,52 @@
     tlSteps.forEach(function (s) { s.classList.add("in-view"); });
   }
 
+  /* ---------- Hodogram na mobitelu: opisi koraka na dodir ---------- */
+  var tlMq = window.matchMedia("(max-width:580px)");
+  var tlHeads = Array.prototype.slice.call(document.querySelectorAll(".tl__head"));
+
+  function tlSyncA11y() {
+    tlHeads.forEach(function (h) {
+      if (tlMq.matches) {
+        h.setAttribute("role", "button");
+        h.setAttribute("tabindex", "0");
+        h.setAttribute("aria-expanded",
+          h.closest(".tl__step").classList.contains("is-open") ? "true" : "false");
+      } else {
+        h.removeAttribute("role");
+        h.removeAttribute("tabindex");
+        h.removeAttribute("aria-expanded");
+      }
+    });
+  }
+  function tlToggle(h) {
+    if (!tlMq.matches) return;
+    var step = h.closest(".tl__step");
+    step.classList.toggle("is-open");
+    h.setAttribute("aria-expanded", step.classList.contains("is-open") ? "true" : "false");
+  }
+  tlHeads.forEach(function (h) {
+    h.addEventListener("click", function () { tlToggle(h); });
+    h.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); tlToggle(h); }
+    });
+  });
+  if (tlHeads.length) {
+    if (tlMq.addEventListener) tlMq.addEventListener("change", tlSyncA11y);
+    else if (tlMq.addListener) tlMq.addListener(tlSyncA11y);
+    tlSyncA11y();
+  }
+
+  /* ---------- Napomena kalkulatora: na širokom ekranu uvijek otvorena ---------- */
+  var calcNote = document.getElementById("calcNote");
+  var calcNoteMq = window.matchMedia("(min-width:581px)");
+  function calcNoteSync() { if (calcNote && calcNoteMq.matches) calcNote.open = true; }
+  if (calcNote) {
+    if (calcNoteMq.addEventListener) calcNoteMq.addEventListener("change", calcNoteSync);
+    else if (calcNoteMq.addListener) calcNoteMq.addListener(calcNoteSync);
+    calcNoteSync();
+  }
+
   /* ---------- Wiki: pretraga i filtar po kategoriji ---------- */
   var wikiGrid = document.getElementById("wikiGrid");
   if (wikiGrid) {
@@ -242,6 +288,16 @@
       }
     });
   });
+
+  /* ---------- FAQ na mobitelu: prikaži sva pitanja ---------- */
+  var faqMore = document.getElementById("faqMore");
+  if (faqMore) {
+    faqMore.addEventListener("click", function () {
+      document.getElementById("faqList").classList.add("is-expanded");
+      faqMore.setAttribute("aria-expanded", "true");
+      faqMore.style.display = "none";
+    });
+  }
 
   /* ---------- Kontakt forma ---------- */
   var form = document.getElementById("contactForm");
