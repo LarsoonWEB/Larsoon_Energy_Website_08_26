@@ -289,6 +289,16 @@
     });
   });
 
+  /* ---------- FAQ na mobitelu: prikaži sva pitanja ---------- */
+  var faqMore = document.getElementById("faqMore");
+  if (faqMore) {
+    faqMore.addEventListener("click", function () {
+      document.getElementById("faqList").classList.add("is-expanded");
+      faqMore.setAttribute("aria-expanded", "true");
+      faqMore.style.display = "none";
+    });
+  }
+
   /* ---------- Kontakt forma ---------- */
   var form = document.getElementById("contactForm");
   var gdpr = document.getElementById("gdprCheck");

@@ -1211,6 +1211,72 @@ a.article-nav__item:hover{
   .footer__grid > div:not(:first-child){ display:none; }
   .footer__grid{ padding-block:44px 32px; }
 }
+
+/* ============================================================
+   Mobile compact — runda 2 (≤580px): gušći vertikalni ritam,
+   manji hero, kompaktniji kalkulator, FAQ i kontakt forma.
+   ============================================================ */
+@media (max-width:580px){
+  /* Vertikalni ritam: 64px sekcijskog paddinga → 44px */
+  .section__inner, .faq__inner{ padding-block:44px; }
+  .contact__grid{ padding-block:44px; }
+  .cta__inner{ padding-block:44px; }
+  .section-header h2{ margin-top:10px; }
+  .section-header .lead{ margin-top:12px; }
+  .cards, .services, .gallery{ margin-top:20px; }
+  .wiki-teaser .wiki-grid{ margin-top:20px; }
+  .tl{ margin-top:28px; }
+  .steps-note{ margin-top:20px; }
+  .paybar{ margin-top:16px; }
+  .steps-cta{ margin-top:24px; }
+  .link-more{ margin-top:16px; }
+  .sol-note{ margin-top:20px; }
+  .warranty{ margin-top:22px; gap:14px 24px; }
+
+  /* Hero: kraći naslov, niža fotografija, gušći razmaci */
+  .hero__grid{ padding-block:40px; }
+  .hero h1{ font-size:34px; line-height:1.05; margin-top:14px; }
+  .hero__lead{ margin-top:16px; }
+  .hero__ctas{ margin-top:22px; }
+  .hero__trust{ margin-top:18px; }
+  .hero__img{ height:210px; }
+
+  /* Kalkulator: bez podnaslova (sučelje je samoobjašnjivo), manja brojka */
+  .calc__inner{ padding-block:40px 44px; }
+  .calc__sub{ display:none; }
+  .calc__tabs-wrap{ margin-top:20px; }
+  .calc__lead{ margin-top:18px; }
+  .calc__value{ font-size:46px; }
+  .calc__stage{ gap:16px; margin-top:16px; }
+  .calc__kpi{ margin-top:28px; padding-top:24px; }
+  .calc__roi{ margin-top:14px; }
+  .calc__cta{ margin-top:26px; }
+
+  /* FAQ: kompaktnija pitanja */
+  .faq__list{ margin-top:24px; gap:10px; }
+  .faq__q{ padding:12px 16px; min-height:48px; gap:10px; }
+  .faq__q span{ font-size:15px; }
+  .faq__a{ padding:0 16px 16px; font-size:14px; }
+
+  /* FAQ: prikaži prva 4 pitanja, ostala na zahtjev (samo uz JS) */
+  html.js .faq__list:not(.is-expanded) .faq__item:nth-child(n+5){ display:none; }
+  html.js .faq__more{ display:flex; }
+
+  /* Kontakt: forma bez okvira — polja preko cijele širine */
+  .form{ border:0; border-radius:0; padding:0; box-shadow:none; background:transparent; }
+  .contact__items{ margin-top:20px; }
+}
+
+/* FAQ "Prikaži sva pitanja" — vidljiv samo na mobitelu uz JS */
+.faq__more{
+  display:none; align-items:center; justify-content:center; gap:7px;
+  margin:18px auto 0; min-height:44px; padding:0 22px;
+  background:var(--white); border:1px solid var(--n-200); border-radius:var(--r-pill);
+  font-family:var(--font-text); font-size:14px; font-weight:600; color:var(--n-600);
+  cursor:pointer;
+}
+.faq__more:focus-visible{ outline:2px solid var(--cyan); outline-offset:2px; }
+.faq__more .lucide{ width:16px; height:16px; color:var(--n-400); }
 @media (pointer:coarse){
   .btn--sm{ min-height:44px; }
   .footer ul a, .footer__legal a{ display:inline-block; padding-block:10px; }
