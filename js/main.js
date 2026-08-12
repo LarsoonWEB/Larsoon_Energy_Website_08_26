@@ -193,8 +193,11 @@
     newBill: document.getElementById("kpiNewBill"),
     saving: document.getElementById("kpiSaving"),
     payback: document.getElementById("kpiPayback"),
+    power: document.getElementById("kpiPower"),
+    gross: document.getElementById("kpiGross"),
     net: document.getElementById("kpiNet"),
-    roi: document.getElementById("kpiRoi")
+    saving20: document.getElementById("kpiSaving20"),
+    paybackNote: document.getElementById("paybackNote")
   };
 
   function fmt(n, d) {
@@ -202,20 +205,33 @@
     return n.toLocaleString("hr-HR", { minimumFractionDigits: d, maximumFractionDigits: d });
   }
 
+  // Larsoon cjenik ključ-u-ruke, 1–20 kWp (isti kao u ponudbenom wizardu)
+  var CJENIK_KWP = [1399, 2598, 3597, 4396, 4995, 5874, 6713, 7512, 8271, 8990,
+                    9724, 10428, 11102, 11746, 12360, 12944, 13498, 14022, 14516, 14980];
+  var BATT_KWH = 10;         // pretpostavljeni kapacitet baterije u kalkulatoru
+  var BATT_EUR_PO_KWH = 200; // €/kWh
+
+  function cijenaSustava(kW) {
+    if (kW <= 1) return CJENIK_KWP[0] * kW;
+    if (kW >= 20) return CJENIK_KWP[19];
+    var lo = Math.floor(kW), hi = Math.ceil(kW);
+    if (lo === hi) return CJENIK_KWP[lo - 1];
+    return CJENIK_KWP[lo - 1] + (kW - lo) * (CJENIK_KWP[hi - 1] - CJENIK_KWP[lo - 1]);
+  }
+
   function calc(kW, battery) {
     var proizvodnja = kW * PRINOS;
     var samop = battery ? 0.70 : 0.30;
     var usteda = proizvodnja * samop * CIJENA_STRUJE +
                  proizvodnja * (1 - samop) * OTKUP_VISKA;
-    var cijenaPoKw = 1000 - (250 / 19) * (kW - 1); // 1.000 €/kW @1 kW → 750 €/kW @20 kW
-    var investPv = kW * cijenaPoKw;
-    var invest = investPv + (battery ? 5000 : 0);
+    var investPv = cijenaSustava(kW);
+    var investBat = battery ? BATT_KWH * BATT_EUR_PO_KWH : 0;
+    var invest = investPv + investBat;
     var poticaj = Math.min(600 * kW, 6000, 0.5 * investPv) +
-                  (battery ? Math.min(3500, 5600, 0.5 * 5000) : 0);
+                  (battery ? Math.min(350 * BATT_KWH, 5600, 0.5 * investBat) : 0);
     var neto = invest - poticaj;
     var povrat = neto / usteda;
-    var roi20 = (usteda * 20 - neto) / neto * 100;
-    return { usteda: usteda, neto: neto, povrat: povrat, roi20: roi20 };
+    return { usteda: usteda, invest: invest, neto: neto, povrat: povrat };
   }
 
   function update() {
@@ -260,8 +276,12 @@
     el.newBill.textContent = fmt(Math.round(noviRacun));
     el.saving.textContent = fmt(Math.round(r.usteda));
     el.payback.textContent = fmt(r.povrat, 1);
+    el.power.textContent = fmt(kW, 1);
+    el.gross.textContent = fmt(Math.round(r.invest));
     el.net.textContent = fmt(Math.round(r.neto));
-    el.roi.textContent = fmt(Math.round(r.roi20));
+    el.saving20.textContent = fmt(Math.round(r.usteda * 20));
+    el.paybackNote.textContent = "* Povrat uz FZOEU poticaj od 50 %. Bez poticaja: ~" +
+      fmt(r.invest / r.usteda, 1) + " god (približno dvostruko dulje).";
   }
 
   el.tabBill.addEventListener("click", function () { state.mode = "bill"; update(); });

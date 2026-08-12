@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="css/main.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-  {"@type":"Question","name":"Koliko košta solarna elektrana za kuću u 2026.?","acceptedAnswer":{"@type":"Answer","text":"Solarna elektrana ključ u ruke za obiteljsku kuću stoji okvirno 4.700 € za 5 kW, odnosno 8.800 € za 10 kW, s 0 % PDV-a na isporuku i ugradnju. Uz FZOEU poticaj do 6.000 € neto ulaganje je do 50 % niže. Točnu cijenu za svoj krov izračunajte našim kalkulatorom."}},
+  {"@type":"Question","name":"Koliko košta solarna elektrana za kuću u 2026.?","acceptedAnswer":{"@type":"Answer","text":"Solarna elektrana ključ u ruke za obiteljsku kuću stoji okvirno 4.995 € za 5 kW, odnosno 8.990 € za 10 kW, s 0 % PDV-a na isporuku i ugradnju. Uz FZOEU poticaj do 6.000 € neto ulaganje je do 50 % niže. Točnu cijenu za svoj krov izračunajte našim kalkulatorom."}},
   {"@type":"Question","name":"Koje poticaje mogu dobiti u 2026.?","acceptedAnswer":{"@type":"Answer","text":"FZOEU poziv EnU-6/26 sufinancira do 50 % investicije: najviše 600 € po kW elektrane (do 6.000 €) i 350 € po kWh baterije (do 5.600 €). Kućanstva u riziku od energetskog siromaštva ostvaruju do 70 %. Prijave kreću 2. rujna 2026. putem sustava eFZOEU — mi vodimo cijelu prijavu za vas."}},
   {"@type":"Question","name":"Isplati li se solarna elektrana nakon ukidanja net-meteringa?","acceptedAnswer":{"@type":"Answer","text":"Da — ali se isplativost sada temelji na samopotrošnji. Od 1. 1. 2026. višak struje predan u mrežu obračunava se mjesečno po nižoj otkupnoj cijeni, dok svaki kWh koji potrošite iz vlastite elektrane vrijedi punih ~0,18 €. Uz dobro dimenzioniran sustav i FZOEU poticaj povrat je tipično 4,5–6 godina, a s baterijom godišnja ušteda gotovo se udvostručuje."}},
   {"@type":"Question","name":"Trebam li bateriju za solarnu elektranu?","acceptedAnswer":{"@type":"Answer","text":"Bez baterije prosječno kućanstvo iskoristi oko 30 % proizvedene struje, a s baterijom oko 70 % — vlastitu struju trošite i navečer. Budući da FZOEU od 2026. sufinancira i baterije (350 €/kWh), baterija u pravilu ne produljuje povrat investicije, a znatno povećava uštedu."}},
@@ -180,24 +180,35 @@
     </div>
     <div class="calc__kpi" aria-live="polite">
       <div>
-        <div class="kpi__label">Nova mjesečna režija</div>
-        <div class="kpi__value kpi__value--cyan"><span id="kpiNewBill">28</span> <small>€</small></div>
+        <div class="kpi__label">Novi račun</div>
+        <div class="kpi__value kpi__value--cyan"><span id="kpiNewBill">40</span> <small>€/mj</small></div>
       </div>
       <div>
         <div class="kpi__label">Godišnja ušteda</div>
-        <div class="kpi__value kpi__value--savings"><span id="kpiSaving">1.587</span> <small>€</small></div>
+        <div class="kpi__value kpi__value--savings"><span id="kpiSaving">1.444</span> <small>€</small></div>
       </div>
       <div>
-        <div class="kpi__label">Procijenjeni povrat</div>
-        <div class="kpi__value"><span id="kpiPayback">4,4</span> <small>god</small></div>
+        <div class="kpi__label">Procijenjeni povrat *</div>
+        <div class="kpi__value"><span id="kpiPayback">3,6</span> <small>god</small></div>
       </div>
       <div>
-        <div class="kpi__label">Neto ulaganje</div>
-        <div class="kpi__value"><span id="kpiNet">6.908</span> <small>€</small></div>
+        <div class="kpi__label">Snaga elektrane</div>
+        <div class="kpi__value"><span id="kpiPower">9,1</span> <small>kW</small></div>
+      </div>
+      <div>
+        <div class="kpi__label">Cijena elektrane (bez subvencije)</div>
+        <div class="kpi__value"><span id="kpiGross">10.343</span> <small>€</small></div>
+      </div>
+      <div>
+        <div class="kpi__label">Cijena sa subvencijom</div>
+        <div class="kpi__value kpi__value--savings"><span id="kpiNet">5.171</span> <small>€</small></div>
       </div>
     </div>
     <div class="calc__roi">
-      <span>ROI nakon 20 god: <strong><span id="kpiRoi">360</span> %</strong></span>
+      <span>Ušteda nakon 20 god: <strong><span id="kpiSaving20">28.883</span> €</strong></span>
+    </div>
+    <div class="calc__roi">
+      <span id="paybackNote">* Povrat uz FZOEU poticaj od 50 %. Bez poticaja: ~7,2 god (približno dvostruko dulje).</span>
     </div>
     <div class="calc__cta">
       <a href="#" class="btn btn--primary btn--lg" data-wizard>Izradite ponudu <i data-lucide="arrow-right"></i></a>
@@ -531,7 +542,7 @@
           <span>Koliko košta solarna elektrana za kuću u 2026.?</span>
           <i data-lucide="chevron-down"></i>
         </button>
-        <div class="faq__a">Solarna elektrana ključ u ruke za obiteljsku kuću stoji okvirno 4.700 € za 5 kW, odnosno 8.800 € za 10 kW, s 0 % PDV-a na isporuku i ugradnju. Uz FZOEU poticaj do 6.000 € neto ulaganje je do 50 % niže. Točnu cijenu za svoj krov izračunajte našim kalkulatorom.</div>
+        <div class="faq__a">Solarna elektrana ključ u ruke za obiteljsku kuću stoji okvirno 4.995 € za 5 kW, odnosno 8.990 € za 10 kW, s 0 % PDV-a na isporuku i ugradnju. Uz FZOEU poticaj do 6.000 € neto ulaganje je do 50 % niže. Točnu cijenu za svoj krov izračunajte našim kalkulatorom.</div>
       </div>
       <div class="faq__item">
         <button type="button" class="faq__q" aria-expanded="false">
