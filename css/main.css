@@ -320,8 +320,9 @@ h1, .section-header h2, .calc h2, .cta h2{ text-wrap:balance; }
   display:grid; grid-template-columns:repeat(6,1fr); row-gap:24px;
   margin-top:44px; padding-top:34px; border-top:1px solid var(--slate-700); text-align:center;
 }
-.calc__kpi > div{ padding:0 12px; border-left:1px solid var(--slate-700); }
+.calc__kpi > div{ padding:0 12px; border-left:1px solid var(--slate-700); display:flex; flex-direction:column; }
 .calc__kpi > div:first-child{ border-left:none; }
+.calc__kpi .kpi__value{ margin-top:auto; }   /* values share one baseline regardless of label line count */
 .calc__roi--row{ display:flex; flex-wrap:wrap; justify-content:center; align-items:baseline; column-gap:28px; row-gap:6px; }
 .calc__kpi > div:last-child{ padding-right:0; }
 .kpi__label{
