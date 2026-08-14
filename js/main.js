@@ -170,10 +170,21 @@
     document.getElementById("fzoeuBanner").classList.add("is-closed");
   });
 
-  /* ---------- Kalkulator uštede ---------- */
-  var CIJENA_STRUJE = 0.18; // €/kWh
-  var OTKUP_VISKA = 0.04;   // €/kWh
+  /* ---------- Kalkulator uštede ----------
+     Mjesečni obračun po modelu samoopskrbe (kSO = 1, od 1. 1. 2026.) —
+     isti model kao ponudbeni wizard: bijela tarifa (VT/NT 60/40, VT-first),
+     prag 3.000 kWh preuzete energije po polugodištu (+35 % na energiju),
+     mjesečno umanjenje za višak po PKC-u. Verificirane cijene: kolovoz 2026. */
   var PRINOS = 1150;        // kWh po kW godišnje
+  var TAR = { eVT: 0.097189, eNT: 0.047688, nVT: 0.065702, nNT: 0.028689 };
+  var OIE = 0.013239, FIXED = 2.965, VAT = 0.13, UPLIFT = 1.35, THRESHOLD = 3000;
+  var FIXED_GROSS = FIXED * (1 + VAT); // ≈ 3,35 €/mj fiksno s PDV-om
+  var VT_SHARE = 0.60;
+  var PROFILE = [3.9, 5.3, 8.6, 10.4, 11.7, 12.1, 12.6, 11.5, 9.1, 6.7, 4.5, 3.6];
+  var SEM = [[3, 4, 5, 6, 7, 8], [9, 10, 11, 0, 1, 2]];
+  var SC_BASE = 0.30, SC_PER_KWH = 0.04, SC_MAX = 0.85;
+  var ESCAL = 0.03;
+  var ANNUITY10 = (Math.pow(1 + ESCAL, 10) - 1) / ESCAL;
 
   var state = { mode: "bill", bill: 160, power: 6, batt: true };
 
@@ -219,34 +230,117 @@
     return CJENIK_KWP[lo - 1] + (kW - lo) * (CJENIK_KWP[hi - 1] - CJENIK_KWP[lo - 1]);
   }
 
-  function calc(kW, battery) {
-    var proizvodnja = kW * PRINOS;
-    var samop = battery ? 0.70 : 0.30;
-    var usteda = proizvodnja * samop * CIJENA_STRUJE +
-                 proizvodnja * (1 - samop) * OTKUP_VISKA;
+  // Prosječna varijabilna cijena kWh s PDV-om (bijela tarifa, 60/40) ≈ 0,160 €/kWh
+  function varPrice() {
+    var pVT = (TAR.eVT + TAR.nVT + OIE) * (1 + VAT);
+    var pNT = (TAR.eNT + TAR.nNT + OIE) * (1 + VAT);
+    return VT_SHARE * pVT + (1 - VT_SHARE) * pNT;
+  }
+
+  // Simulacija godine: mjesečni obračun (kSO = 1), VT-first pokrivanje potrošnje,
+  // prag 3.000 kWh/polugodište (+35 % energija), umanjenje = PKC × min(preuzeto, predano).
+  // Vraća godišnji račun u € (s PDV-om).
+  function simulate(consYear, prodYear, batt) {
+    var r = batt > 0 ? Math.min(SC_MAX, SC_BASE + SC_PER_KWH * batt) : SC_BASE;
+    var rows = [], m, x;
+    for (m = 0; m < 12; m++) {
+      var consVT = consYear / 12 * VT_SHARE, consNT = consYear / 12 * (1 - VT_SHARE);
+      var prod = prodYear * PROFILE[m] / 100;
+      var sc = Math.min(r * prod, consVT + consNT);
+      var scVT = Math.min(sc, consVT);
+      var scNT = Math.min(sc - scVT, consNT);
+      var impVT = consVT - scVT, impNT = consNT - scNT;
+      rows.push({ impVT: impVT, impNT: impNT, imp: impVT + impNT, exp: prod - sc, upKwh: 0 });
+    }
+    SEM.forEach(function (bucket) {
+      var cum = 0;
+      bucket.forEach(function (i) {
+        x = rows[i];
+        x.upKwh = x.imp - Math.max(0, Math.min(x.imp, THRESHOLD - cum));
+        cum += x.imp;
+      });
+    });
+    var bill = 0;
+    for (m = 0; m < 12; m++) {
+      x = rows[m];
+      var eBase = x.impVT * TAR.eVT + x.impNT * TAR.eNT;
+      var upFrac = x.imp > 1e-9 ? x.upKwh / x.imp : 0;
+      var energy = eBase * (1 - upFrac) + eBase * upFrac * UPLIFT;
+      var mreza = x.impVT * TAR.nVT + x.impNT * TAR.nNT;
+      var gross = (energy + mreza + x.imp * OIE + FIXED) * (1 + VAT);
+      var pkc = x.imp > 1e-9 ? energy / x.imp : (TAR.eVT + TAR.eNT) / 2;
+      bill += gross - pkc * Math.min(x.imp, x.exp);
+    }
+    return bill;
+  }
+
+  // Račun (€/mj, s PDV-om) → godišnja potrošnja (kWh): prva procjena preko
+  // prosječne cijene, zatim kalibracija da simulirani račun pogodi uneseni.
+  function billToAnnualKwh(billMonthly) {
+    var kwh = Math.max(0, (billMonthly - FIXED_GROSS) / varPrice()) * 12;
+    var target = billMonthly * 12;
+    var fixedAnnual = FIXED_GROSS * 12;
+    for (var i = 0; i < 5; i++) {
+      var bill = simulate(kwh, 0, 0);
+      if (Math.abs(bill - target) < 0.5) break;
+      var varActual = bill - fixedAnnual, varTarget = target - fixedAnnual;
+      if (varActual <= 0 || varTarget <= 0) break;
+      kwh = kwh * (varTarget / varActual);
+    }
+    return kwh;
+  }
+
+  function financials(prodYear, batt, usteda) {
+    var kW = prodYear / PRINOS;
     var investPv = cijenaSustava(kW);
-    var investBat = battery ? BATT_KWH * BATT_EUR_PO_KWH : 0;
+    var investBat = batt > 0 ? batt * BATT_EUR_PO_KWH : 0;
     var invest = investPv + investBat;
     var poticaj = Math.min(600 * kW, 6000, 0.5 * investPv) +
-                  (battery ? Math.min(350 * BATT_KWH, 5600, 0.5 * investBat) : 0);
+                  (batt > 0 ? Math.min(350 * batt, 5600, 0.5 * investBat) : 0);
     var neto = invest - poticaj;
-    var povrat = neto / usteda;
-    return { usteda: usteda, invest: invest, neto: neto, povrat: povrat };
+    return {
+      kW: kW, usteda: usteda, invest: invest, neto: neto,
+      povrat: usteda > 0 ? neto / usteda : Infinity,
+      ben10: usteda * ANNUITY10 - neto
+    };
+  }
+
+  // 10-godišnji optimum veličine elektrane (korak 250 kWh proizvodnje, baterija
+  // fiksna prema prekidaču): najveća neto korist kroz 10 god uz rast cijena 3 %/god.
+  function findIdeal(consYear, batt, baselineBill) {
+    var best = null;
+    var sinceImprovement = 0;
+    for (var p = 500; sinceImprovement < 12 && p <= 23000; p += 250) {
+      var bill = simulate(consYear, p, batt);
+      var f = financials(p, batt, baselineBill - bill);
+      var improved = false;
+      if (!best || f.ben10 > best.f.ben10) { best = { p: p, bill: bill, f: f }; improved = true; }
+      if (p >= consYear) sinceImprovement = improved ? 0 : sinceImprovement + 1;
+    }
+    return best;
   }
 
   function update() {
     var byBill = state.mode === "bill";
-    var kW, racunPrije;
+    var batt = state.batt ? BATT_KWH : 0;
+    var kW, r, godRacun;
     if (byBill) {
-      var potrosnjaGod = (state.bill - 3) * 12 / CIJENA_STRUJE;
-      kW = Math.min(20, Math.max(1, Math.round(potrosnjaGod / PRINOS * 10) / 10));
-      racunPrije = state.bill;
+      // Iz računa: kalibrirana potrošnja → optimalna elektrana za taj dom
+      var consYear = billToAnnualKwh(state.bill);
+      var baseline = simulate(consYear, 0, 0);
+      var ideal = findIdeal(consYear, batt, baseline);
+      kW = ideal.p / PRINOS;
+      r = ideal.f;
+      godRacun = ideal.bill;
     } else {
+      // Iz snage: direktan kW, potrošnja pretpostavljena ≈ godišnjoj proizvodnji
       kW = state.power;
-      racunPrije = Math.round(kW * PRINOS * CIJENA_STRUJE / 12);
+      var prod = kW * PRINOS;
+      var baselinePow = simulate(prod, 0, 0);
+      godRacun = simulate(prod, prod, batt);
+      r = financials(prod, batt, baselinePow - godRacun);
     }
-    var r = calc(kW, state.batt);
-    var noviRacun = Math.max(0, racunPrije - r.usteda / 12);
+    var noviRacun = Math.max(0, godRacun / 12);
 
     // Tabovi
     el.tabBill.setAttribute("aria-pressed", byBill ? "true" : "false");

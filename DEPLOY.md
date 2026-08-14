@@ -74,7 +74,7 @@ Canonical i OG tagovi u `index.html` pokazuju na **`https://www.larsoon.com/`**
 - [ ] **Kontakt forma:** pošalji prvu probnu poruku — FormSubmit će na
       `info@larsoon.com` poslati **jednokratni aktivacijski e-mail**; klikni
       potvrdu. Tek nakon toga poruke se isporučuju. Pošalji još jednu probu.
-- [ ] Kalkulator: 6 kW bez baterije → 566 €/god, povrat 5,2
+- [ ] Kalkulator: 6 kW bez baterije → 683 €/god, povrat 4,3
 - [ ] Podijeli link u WhatsApp/LinkedIn — provjeri OG sliku i naslov
       (po potrebi [opengraph.xyz](https://www.opengraph.xyz) za pregled)
 - [ ] Favicon vidljiv u tabu

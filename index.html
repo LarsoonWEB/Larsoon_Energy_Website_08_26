@@ -27,7 +27,7 @@
   {"@type":"Question","name":"Trebam li bateriju za solarnu elektranu?","acceptedAnswer":{"@type":"Answer","text":"Bez baterije prosječno kućanstvo iskoristi oko 30 % proizvedene struje, a s baterijom oko 70 % — vlastitu struju trošite i navečer. Budući da FZOEU od 2026. sufinancira i baterije (350 €/kWh), baterija u pravilu ne produljuje povrat investicije, a znatno povećava uštedu."}},
   {"@type":"Question","name":"Koliko struje proizvodi solarna elektrana u Hrvatskoj?","acceptedAnswer":{"@type":"Answer","text":"Prosječno oko 1.150 kWh godišnje po kW instalirane snage — u kontinentalnoj Hrvatskoj oko 1.100 kWh, a u Dalmaciji do 1.400 kWh. Elektrana od 10 kW tako proizvede 11.000–14.000 kWh godišnje, što je više od prosječne godišnje potrošnje kućanstva."}},
   {"@type":"Question","name":"Koliko traje cijeli proces i što ja moram napraviti?","acceptedAnswer":{"@type":"Answer","text":"Gotovo ništa — Larsoon vodi projekt, prijavu na FZOEU, suglasnosti HEP-a, ugradnju i puštanje u pogon. Ponudu dobivate za 10 minuta, a cijeli proces do trajnog pogona tipično traje 7 do 11 tjedana, ovisno o rokovima HEP-a."}},
-  {"@type":"Question","name":"Koja jamstva dobivam?","acceptedAnswer":{"@type":"Answer","text":"Do 25 godina jamstva na panele, 5 + 5 godina na inverter (5 godina osnovnog i 5 godina produljenog jamstva) i 2 godine na izvedene radove. Uz ugovor o održavanju pratimo proizvodnju vaše elektrane i reagiramo prije nego što kvar primijetite."}}
+  {"@type":"Question","name":"Koja jamstva dobivam?","acceptedAnswer":{"@type":"Answer","text":"Do 25 godina jamstva na panele, 10 godina na inverter i 2 godine na izvedene radove. Uz ugovor o održavanju pratimo proizvodnju vaše elektrane i reagiramo prije nego što kvar primijetite."}}
 ]}
 </script>
 <script type="application/ld+json">
@@ -95,7 +95,7 @@
       </div>
       <div class="hero__trust u-m-hide">
         <i data-lucide="check-circle-2"></i>
-        <span>300+ elektrana ugrađeno diljem Hrvatske.</span>
+        <span>600+ elektrana ugrađeno diljem Hrvatske.</span>
       </div>
     </div>
     <div class="hero__aside">
@@ -120,7 +120,7 @@
     <div class="trust__item">
       <span class="chip chip--savings"><i data-lucide="zap"></i></span>
       <div>
-        <div class="trust__num">300+ elektrana</div>
+        <div class="trust__num">600+ elektrana</div>
         <div class="trust__label">ugrađeno u Hrvatskoj</div>
       </div>
     </div>
@@ -180,39 +180,41 @@
     </div>
     <div class="calc__kpi" aria-live="polite">
       <div>
-        <div class="kpi__label">Novi račun</div>
-        <div class="kpi__value kpi__value--cyan"><span id="kpiNewBill">40</span> <small>€/mj</small></div>
-      </div>
-      <div>
-        <div class="kpi__label">Godišnja ušteda</div>
-        <div class="kpi__value kpi__value--savings"><span id="kpiSaving">1.444</span> <small>€</small></div>
-      </div>
-      <div>
-        <div class="kpi__label">Procijenjeni povrat *</div>
-        <div class="kpi__value"><span id="kpiPayback">3,6</span> <small>god</small></div>
-      </div>
-      <div>
         <div class="kpi__label">Snaga elektrane</div>
-        <div class="kpi__value"><span id="kpiPower">9,1</span> <small>kW</small></div>
+        <div class="kpi__value"><span id="kpiPower">14,3</span> <small>kW</small></div>
       </div>
       <div>
         <div class="kpi__label">Cijena bez subvencije</div>
-        <div class="kpi__value"><span id="kpiGross">10.343</span> <small>€</small></div>
+        <div class="kpi__value"><span id="kpiGross">13.960</span> <small>€</small></div>
+      </div>
+      <div>
+        <div class="kpi__label">Novi račun</div>
+        <div class="kpi__value kpi__value--cyan"><span id="kpiNewBill">16</span> <small>€/mj</small></div>
+      </div>
+      <div>
+        <div class="kpi__label">Procijenjeni povrat *</div>
+        <div class="kpi__value"><span id="kpiPayback">4,0</span> <small>god</small></div>
+      </div>
+    </div>
+    <div class="calc__hero">
+      <div>
+        <div class="kpi__label">Godišnja ušteda</div>
+        <div class="kpi__value kpi__value--savings"><span id="kpiSaving">1.732</span> <small>€</small></div>
       </div>
       <div>
         <div class="kpi__label">Cijena sa subvencijom</div>
-        <div class="kpi__value kpi__value--savings"><span id="kpiNet">5.171</span> <small>€</small></div>
+        <div class="kpi__value"><span id="kpiNet">6.980</span> <small>€</small></div>
       </div>
     </div>
     <div class="calc__roi calc__roi--row">
-      <span>Ušteda nakon 20 god: <strong><span id="kpiSaving20">28.883</span> €</strong></span>
-      <span id="paybackNote">* Povrat uz FZOEU poticaj od 50 %. Bez poticaja: ~7,2 god (približno dvostruko dulje).</span>
+      <span>Ušteda nakon 20 god: <strong><span id="kpiSaving20">34.638</span> €</strong></span>
+      <span id="paybackNote">* Povrat uz FZOEU poticaj od 50 %. Bez poticaja: ~8,1 god (približno dvostruko dulje).</span>
     </div>
     <div class="calc__cta">
       <a href="#" class="btn btn--primary btn--lg" data-wizard>Izradite ponudu <i data-lucide="arrow-right"></i></a>
       <details class="calc__note" id="calcNote">
         <summary>Detalji izračuna</summary>
-        <p>Okvirni izračun uz cijenu struje 0,18 €/kWh, prosječnu proizvodnju 1.150 kWh po kW godišnje i FZOEU poticaj (poziv EnU-6/26): do 50 % investicije, najviše 600 €/kW za elektranu i 350 €/kWh za bateriju. Višak predan u mrežu obračunat po prosječnoj otkupnoj cijeni. Točan izračun za vaš krov dobivate u besplatnoj ponudi.</p>
+        <p>Okvirni izračun prema službenim tarifama HEP-a (bijela tarifa), uz mjesečni obračun viška po modelu samoopskrbe, prosječnu proizvodnju 1.150 kWh po kW godišnje i FZOEU poticaj (poziv EnU-6/26): do 50 % investicije, najviše 600 €/kW za elektranu i 350 €/kWh za bateriju. Točan izračun za vaš krov dobivate u besplatnoj ponudi.</p>
       </details>
     </div>
   </div>
@@ -232,7 +234,7 @@
         <div class="stat-card__label">iskustva u solarnim projektima</div>
       </div>
       <div class="stat-card">
-        <div class="stat-card__num">300+</div>
+        <div class="stat-card__num">600+</div>
         <div class="stat-card__label">elektrana ugrađeno u Hrvatskoj</div>
       </div>
       <div class="stat-card">
@@ -433,11 +435,11 @@
         <p>Od 1. siječnja 2026. Hrvatska je prešla s neto mjerenja na neto naplatu. Što to konkretno znači za isplativost vašeg sustava?</p>
         <span class="wiki-card__more">7 min čitanja <i data-lucide="arrow-right"></i></span>
       </a>
-      <a class="wiki-card" href="wiki/isplativost-solarnih-panela-roi">
+      <a class="wiki-card" href="wiki/obracun-struje-sa-solarnom-elektranom">
         <span class="wiki-cat wiki-cat--savings">Financijski aspekti</span>
-        <h3>Isplativost solarne elektrane — kako izračunati ROI?</h3>
-        <p>Period povrata, ušteda kroz 25 godina i ROI — izračunajte isplativost prije odluke o kupnji.</p>
-        <span class="wiki-card__more">6 min čitanja <i data-lucide="arrow-right"></i></span>
+        <h3>Kako se obračunava struja sa solarnom elektranom? Primjeri računa 2026.</h3>
+        <p>Mjesečni obračun po modelu samoopskrbe s primjerima: račun zimi, ljeti i kroz cijelu godinu — s baterijom i bez nje.</p>
+        <span class="wiki-card__more">8 min čitanja <i data-lucide="arrow-right"></i></span>
       </a>
     </div>
   </div>
@@ -491,7 +493,7 @@
     <div class="section-header section-header--center">
       <span class="eyebrow">Naši radovi</span>
       <h2>Solarne elektrane diljem Hrvatske.</h2>
-      <p class="lead u-m-hide">Više od 300 elektrana na obiteljskim kućama i poslovnim objektima. Pogledajte izbor iz naših projekata.</p>
+      <p class="lead u-m-hide">Više od 600 elektrana na obiteljskim kućama i poslovnim objektima. Pogledajte izbor iz naših projekata.</p>
     </div>
     <div class="gallery">
       <div class="gallery__item">
@@ -521,7 +523,7 @@
     </div>
     <div class="warranty">
       <span><i data-lucide="shield-check"></i>25 god jamstva na panele</span>
-      <span><i data-lucide="shield-check"></i>5 + 5 god na inverter</span>
+      <span><i data-lucide="shield-check"></i>10 god na inverter</span>
       <span><i data-lucide="shield-check"></i>2 god na radove</span>
     </div>
   </div>
@@ -582,7 +584,7 @@
           <span>Koja jamstva dobivam?</span>
           <i data-lucide="chevron-down"></i>
         </button>
-        <div class="faq__a">Do 25 godina jamstva na panele, 5 + 5 godina na inverter (5 godina osnovnog i 5 godina produljenog jamstva) i 2 godine na izvedene radove. Uz ugovor o održavanju pratimo proizvodnju vaše elektrane i reagiramo prije nego što kvar primijetite.</div>
+        <div class="faq__a">Do 25 godina jamstva na panele, 10 godina na inverter i 2 godine na izvedene radove. Uz ugovor o održavanju pratimo proizvodnju vaše elektrane i reagiramo prije nego što kvar primijetite.</div>
       </div>
     </div>
     <button type="button" class="faq__more" id="faqMore" aria-controls="faqList" aria-expanded="false">Prikaži sva pitanja <i data-lucide="chevron-down"></i></button>
