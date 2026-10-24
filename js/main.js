@@ -1,6 +1,6 @@
 /* ============================================================
    LARSOON — Landing page behaviour
-   Nav · FZOEU banner · kalkulator uštede · FAQ · kontakt forma
+   Nav · najavna traka · kalkulator uštede · FAQ · kontakt forma
    ============================================================ */
 (function () {
   "use strict";
@@ -165,10 +165,15 @@
     headings.forEach(function (h) { tocSpy.observe(h); });
   }
 
-  /* ---------- FZOEU banner ---------- */
-  document.getElementById("bannerClose").addEventListener("click", function () {
-    document.getElementById("fzoeuBanner").classList.add("is-closed");
-  });
+  /* ---------- Najavna traka (data-expires = zadnji dan prikaza, lokalno vrijeme) ---------- */
+  var banner = document.getElementById("siteBanner");
+  if (banner) {
+    var exp = banner.getAttribute("data-expires");
+    if (exp && new Date() > new Date(exp + "T23:59:59")) banner.classList.add("is-closed");
+    document.getElementById("bannerClose").addEventListener("click", function () {
+      banner.classList.add("is-closed");
+    });
+  }
 
   /* ---------- Kalkulator uštede ----------
      Mjesečni obračun po modelu samoopskrbe (kSO = 1, od 1. 1. 2026.) —
