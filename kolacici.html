@@ -24,18 +24,18 @@
 
 <main class="legal-main">
   <h1>Pravila o kolačićima</h1>
-  <p class="legal-updated">Zadnja izmjena: 31. srpnja 2026.</p>
+  <p class="legal-updated">Zadnja izmjena: 24. listopada 2026.</p>
 
   <h2>Što su kolačići?</h2>
-  <p>Kolačići (cookies) su male tekstualne datoteke koje web stranica sprema na vaš uređaj. Koristimo ih kako bi stranica ispravno radila i kako bismo razumjeli kako je posjetitelji koriste.</p>
+  <p>Kolačići (cookies) su male tekstualne datoteke koje web stranica sprema na vaš uređaj. Koristimo ih kako bi stranica ispravno radila i kako bismo razumjeli kako je posjetitelji koriste. Ova pravila vrijede za <strong>www.larsoon.com</strong> i <strong>ponuda.larsoon.com</strong>.</p>
 
   <h2>Koje kolačiće koristimo?</h2>
-  <p><strong>Nužni kolačići</strong> — omogućuju osnovne funkcije stranice (sigurnost, učitavanje stranice, pamćenje vaših postavki privatnosti). Postavljaju se automatski i za njih nije potrebna privola. Uključuju sistemske kolačiće Wix platforme na kojoj je stranica izrađena (npr. <code>XSRF-TOKEN</code>, <code>hs</code>, <code>svSession</code> — trajanje od trajanja sesije do 12 mjeseci).</p>
-  <p><strong>Analitički kolačići</strong> — pomažu nam razumjeti posjećenost i ponašanje na stranici (npr. Wix Analytics / Google Analytics). Postavljaju se <strong>samo uz vašu privolu</strong> putem banera za kolačiće.</p>
-  <p><strong>Marketinški kolačići</strong> — trenutno ih <strong>ne koristimo</strong>. Ako ih uvedemo (npr. za oglašavanje), tražit ćemo zasebnu privolu i ažurirati ovu stranicu.</p>
+  <p><strong>Nužni</strong> — pamte vaš izbor privole (<code>larsoon-consent</code> u lokalnoj pohrani preglednika, 12 mjeseci) i omogućuju osnovni rad stranice. Ne traže privolu.</p>
+  <p><strong>Analitički (Google Analytics 4)</strong> — mjere posjećenost i korištenje kalkulatora i upitnika za ponudu (npr. <code>_ga</code>, <code>_ga_*</code>, trajanje do 13 mjeseci). Bez privole Google Analytics radi bez kolačića i bez identifikatora (Consent Mode); s privolom se postavljaju navedeni kolačići.</p>
+  <p><strong>Marketinški (Meta Pixel)</strong> — mjere učinak oglasa na Facebooku i Instagramu i omogućuju prikaz relevantnih oglasa (npr. <code>_fbp</code>, 3 mjeseca). Učitavaju se <strong>isključivo uz vašu privolu</strong>.</p>
 
   <h2>Kako upravljati kolačićima?</h2>
-  <p>Privolu za neobavezne kolačiće dajete i mijenjate putem banera za kolačiće (poveznica „Postavke kolačića" u podnožju stranice). Kolačiće možete obrisati i blokirati i u postavkama svog preglednika; u tom slučaju neki dijelovi stranice možda neće ispravno raditi.</p>
+  <p>Privolu dajete ili odbijate u traci koja se prikazuje pri prvom posjetu. Izbor možete promijeniti bilo kada: <button type="button" class="link-btn" onclick="window.larsoonConsent&&larsoonConsent.open()">otvori postavke kolačića</button>. Kolačiće možete obrisati i blokirati i u postavkama preglednika.</p>
   <p>Pitanja o kolačićima i privatnosti: <a href="mailto:info@larsoon.com">info@larsoon.com</a>.</p>
 </main>
 
@@ -52,5 +52,15 @@
   </div>
 </footer>
 
+<div class="consent" id="consentBanner" role="region" aria-label="Privola za kolačiće" hidden>
+  <div class="consent__inner">
+    <p class="consent__text"><strong>Kolačići za mjerenje.</strong> Koristimo Google Analytics i Meta Pixel da vidimo što na stranici radi, a što ne. Bez privole ne spremamo ništa osim nužnog. <a href="kolacici">Pravila o kolačićima</a></p>
+    <div class="consent__actions">
+      <button type="button" class="btn btn--primary btn--sm" data-consent="granted">Prihvaćam</button>
+      <button type="button" class="btn btn--ghost-on-dark btn--sm" data-consent="denied">Samo nužni</button>
+    </div>
+  </div>
+</div>
+<script src="js/consent.js"></script>
 </body>
 </html>
