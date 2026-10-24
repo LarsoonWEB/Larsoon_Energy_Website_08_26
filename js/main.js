@@ -192,13 +192,14 @@
      tarifa (VT/NT 60/40, VT-first), prag 3.000 kWh preuzete energije po
      polugodištu (+35 % na energiju), mjesečno umanjenje za višak po PKC-u.
      Dimenzioniranje = 10-godišnji optimum kWp + baterije ZAJEDNO (0/5/10/15/20
-     kWh), bez kape na snagu; snaga se zaokružuje na cijele panele (455 Wp).
+     kWh), bez kape na snagu; panel se bira iz kataloga (450/455/460/470 W) tako da
+     n × Wp bude najbliže ciljanoj snazi (1.11, odluka 24.10.2026.).
      Pretpostavke www-a (wizard ih uzima iz unosa): prinos 1.150 kWh/kW,
      limeni krov (bez doplate), bez sjene, trofazni priključak.
      Svaka promjena konstanti mora proći i u Supabase `config` tablici wizarda
      (compare skripta: scripts/compare-calc.mjs u wizard repozitoriju). */
   var PRINOS = 1150;        // kWh po kW godišnje (E_y)
-  var PANEL_WP = 470;       // = catalog.defaultPanel u wizardu (najjači panel u katalogu, 470 W)
+  var PANEL_OPTIONS_WP = [450, 455, 460, 470]; // = panel_catalog u wizardu (1.11)
   var TAR = { eVT: 0.097189, eNT: 0.047688, nVT: 0.065702, nNT: 0.028689 };
   var OIE = 0.013239, FIXED = 2.965, VAT = 0.13, UPLIFT = 1.35, THRESHOLD = 3000;
   var FIXED_GROSS = FIXED * (1 + VAT); // ≈ 3,35 €/mj fiksno s PDV-om
@@ -360,10 +361,20 @@
     return best;
   }
 
-  // Zaokruživanje snage na cijele panele (kao wizard: ceil na panelCount × 455 Wp)
-  function roundToPanels(kW) {
-    return Math.ceil(kW * 1000 / PANEL_WP) * PANEL_WP / 1000;
+  // = selectPanel() (1.11): iz kataloga bira snagu panela i broj panela tako da
+  // n × Wp bude najbliže ciljanoj snazi; izjednačenje → jači panel. Vraća kWp.
+  function selectPanel(kW) {
+    var targetW = kW * 1000, best = null;
+    PANEL_OPTIONS_WP.forEach(function (wp) {
+      var n = Math.max(1, Math.round(targetW / wp));
+      var diff = Math.abs(n * wp - targetW);
+      if (!best || diff < best.diff - 1e-9 || (Math.abs(diff - best.diff) <= 1e-9 && wp > best.wp)) {
+        best = { wp: wp, n: n, diff: diff };
+      }
+    });
+    return { kW: best.n * best.wp / 1000, wp: best.wp, n: best.n };
   }
+  function roundToPanels(kW) { return selectPanel(kW).kW; }
 
   // = calcScenario() za jednu konfiguraciju: cijena, poticaj, neto, ušteda, povrat.
   function scenario(kW, batt, consYear) {
