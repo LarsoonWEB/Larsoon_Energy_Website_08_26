@@ -198,7 +198,7 @@
      Svaka promjena konstanti mora proći i u Supabase `config` tablici wizarda
      (compare skripta: scripts/compare-calc.mjs u wizard repozitoriju). */
   var PRINOS = 1150;        // kWh po kW godišnje (E_y)
-  var PANEL_WP = 455;       // zadani panel u wizardu (catalog.defaultPanel)
+  var PANEL_WP = 470;       // = catalog.defaultPanel u wizardu (najjači panel u katalogu, 470 W)
   var TAR = { eVT: 0.097189, eNT: 0.047688, nVT: 0.065702, nNT: 0.028689 };
   var OIE = 0.013239, FIXED = 2.965, VAT = 0.13, UPLIFT = 1.35, THRESHOLD = 3000;
   var FIXED_GROSS = FIXED * (1 + VAT); // ≈ 3,35 €/mj fiksno s PDV-om
