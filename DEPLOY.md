@@ -153,3 +153,5 @@ node build/build-pages.mjs   # sadržaj u skripti   →  rjesenja/*.html, usluge
   deploya (opcija A) ili `vercel --prod` (opcija B).
 - FZOEU banner se uklanja brisanjem `<div class="banner" id="fzoeuBanner">…</div>`
   bloka u `index.html` (označen komentarom „privremeno").
+
+<!-- 0.13 test: merge → production? 24.10.2026. -->
