@@ -136,6 +136,7 @@ node build/build-wiki.mjs    # content/wiki/*.mdx  →  wiki.html + wiki/*.html
 node build/build-pages.mjs   # sadržaj u skripti   →  rjesenja/*.html, usluge/*.html
 ```
 
+- **Sitemap:** `sitemap.xml` je ručno održavan (plan 0.4). Pri svakoj novoj indeksabilnoj stranici dodaj `<url>` s `lastmod` (datum zadnje promjene sadržaja). Pravne stranice su `noindex` i ne ulaze.
 - **Novi wiki članak:** dodaj `.mdx` u `content/wiki/` (s frontmatterom
   `title, excerpt, category, readTime, publishedAt, author`) i pokreni prvu
   skriptu. Kategorije: `tehnicke-osnove`, `pravni-aspekti`,

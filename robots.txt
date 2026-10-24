@@ -1,0 +1,35 @@
+# www.larsoon.com — robots.txt (plan 0.4)
+# Odluka 22.10.2026.: svi tražilični i AI botovi dopušteni.
+
+User-agent: *
+Allow: /
+
+# AI pretraživanje i treniranje — eksplicitno dopušteno
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://www.larsoon.com/sitemap.xml
