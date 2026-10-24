@@ -17,6 +17,9 @@
   }
   document.querySelectorAll("[data-wizard]").forEach(function (a) {
     a.href = wizardHref(a.getAttribute("data-wizard"));
+    a.addEventListener("click", function () {
+      if (window.larsoonTrack) larsoonTrack("cta_click", { location: a.getAttribute("data-wizard") || "other" });
+    });
   });
 
   /* ---------- Lucide ikone ---------- */
@@ -335,6 +338,13 @@
     var byBill = state.mode === "bill";
     var calcCta = document.getElementById("calcCta");
     if (calcCta) calcCta.href = wizardHref("calculator", byBill ? state.bill : null);
+    if (update.ran && window.larsoonTrack) {
+      clearTimeout(update.t);
+      update.t = setTimeout(function () {
+        larsoonTrack("calc_interact", { mode: state.mode, value: byBill ? state.bill : state.power, battery: state.batt });
+      }, 800);
+    }
+    update.ran = true;
     var batt = state.batt ? BATT_KWH : 0;
     var kW, r, godRacun;
     if (byBill) {

@@ -252,7 +252,18 @@
   </div>
 </footer>
 
+<!-- Privola za kolačiće (0.7) — prikazuje je js/consent.js dok izbor nije spremljen -->
+<div class="consent" id="consentBanner" role="region" aria-label="Privola za kolačiće" hidden>
+  <div class="consent__inner">
+    <p class="consent__text"><strong>Kolačići za mjerenje.</strong> Koristimo Google Analytics i Meta Pixel da vidimo što na stranici radi, a što ne. Bez privole ne spremamo ništa osim nužnog. <a href="../kolacici">Pravila o kolačićima</a></p>
+    <div class="consent__actions">
+      <button type="button" class="btn btn--primary btn--sm" data-consent="granted">Prihvaćam</button>
+      <button type="button" class="btn btn--ghost-on-dark btn--sm" data-consent="denied">Samo nužni</button>
+    </div>
+  </div>
+</div>
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
+<script src="../js/consent.js"></script>
 <script src="../js/main.js" defer></script>
 </body>
 </html>

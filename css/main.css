@@ -1323,3 +1323,15 @@ a.article-nav__item:hover{
   *{ transition:none !important; animation:none !important; }
   html{ scroll-behavior:auto; }
 }
+
+/* ---------- Privola za kolačiće (0.7) ---------- */
+.consent{ position:fixed; left:0; right:0; bottom:0; z-index:60; background:var(--slate-800); color:#fff; border-top:1px solid var(--slate-700); box-shadow:0 -8px 24px rgba(0,0,0,.25); }
+.consent[hidden]{ display:none; }
+.consent__inner{ max-width:1120px; margin:0 auto; padding:14px 20px; padding-bottom:max(14px, env(safe-area-inset-bottom)); display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+.consent__text{ margin:0; font-size:14px; line-height:1.5; max-width:70ch; }
+.consent__text a{ color:#fff; text-decoration:underline; text-underline-offset:3px; }
+.consent__text a:hover{ color:var(--cyan); }
+.consent__actions{ display:flex; gap:8px; flex-shrink:0; }
+.consent__actions .btn{ min-height:44px; }
+.link-btn{ background:none; border:0; padding:0; font:inherit; color:var(--cyan-800); text-decoration:underline; cursor:pointer; }
+@media (max-width:640px){ .consent__actions{ width:100%; } .consent__actions .btn{ flex:1; } }
