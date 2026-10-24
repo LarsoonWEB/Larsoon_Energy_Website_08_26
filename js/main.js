@@ -7,10 +7,16 @@
 
   document.documentElement.classList.add("js");
 
-  // URL upitnika za ponudu (Quote wizard)
-  var WIZARD_URL = "https://ponuda.larsoon.com";
+  // URL upitnika za ponudu (Quote wizard) + UTM po sekciji (plan 0.2).
+  // data-wizard="<campaign>" na svakom CTA-u; kalkulator dodaje &bill=<€/mj>.
+  var WIZARD_URL = "https://ponuda.larsoon.com/wizard";
+  function wizardHref(campaign, bill) {
+    var u = WIZARD_URL + "?utm_source=larsoon.com&utm_medium=cta&utm_campaign=" + encodeURIComponent(campaign || "other");
+    if (bill) u += "&bill=" + encodeURIComponent(bill);
+    return u;
+  }
   document.querySelectorAll("[data-wizard]").forEach(function (a) {
-    a.href = WIZARD_URL;
+    a.href = wizardHref(a.getAttribute("data-wizard"));
   });
 
   /* ---------- Lucide ikone ---------- */
@@ -327,6 +333,8 @@
 
   function update() {
     var byBill = state.mode === "bill";
+    var calcCta = document.getElementById("calcCta");
+    if (calcCta) calcCta.href = wizardHref("calculator", byBill ? state.bill : null);
     var batt = state.batt ? BATT_KWH : 0;
     var kW, r, godRacun;
     if (byBill) {
