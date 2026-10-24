@@ -761,6 +761,7 @@ ${p.cross
 <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
 <script src="${up}js/consent.js"></script>
 <script src="${up}js/main.js" defer></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
 `;
