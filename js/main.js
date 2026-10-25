@@ -73,7 +73,7 @@
           reveal.unobserve(en.target);
         }
       });
-    }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+    }, { threshold: 0, rootMargin: "0px 0px 20% 0px" }); // 2.9 · korak se pojavljuje prije ulaska u viewport (bez praznih sekcija pri scrollu)
     tlSteps.forEach(function (s) { reveal.observe(s); });
   } else {
     tlSteps.forEach(function (s) { s.classList.add("in-view"); });
