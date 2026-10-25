@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="hr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stranica nije pronađena | Larsoon Energy</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0B141C">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/sora-vf.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/manrope-vf.woff2" crossorigin>
+<link rel="stylesheet" href="/css/fonts.css">
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/main.css">
+<style>
+  /* 2.5 · 404 — isti obrazac kao ponuda.larsoon.com/not-found: midnight, SVG logo, pill gumbi */
+  .nf{ min-height:100dvh; display:flex; flex-direction:column; background:var(--midnight); color:#fff; }
+  .nf__head{ display:flex; align-items:center; height:56px; padding:0 clamp(20px,3vw,40px); border-bottom:1px solid var(--slate-700); }
+  .nf__head img{ height:34px; width:auto; display:block; }
+  .nf__body{ flex:1; display:flex; align-items:center; justify-content:center; padding:64px 24px; text-align:center; }
+  .nf__inner{ max-width:480px; }
+  .nf p.nf__code{ font-family:var(--font-display); font-size:64px; line-height:1; font-weight:700; color:var(--cyan-bright); margin:0; }
+  .nf h1{ font-family:var(--font-display); font-size:var(--fs-h3); font-weight:700; margin:16px 0 0; }
+  .nf p{ font-family:var(--font-text); font-size:var(--fs-small); color:var(--n-300); line-height:var(--lh-body); margin:12px 0 0; }
+  .nf__actions{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:32px; }
+  .nf__actions .btn{ min-height:48px; }
+  @media (max-width:580px){ .nf__head img{ height:22px; } }
+</style>
+</head>
+<body>
+<main class="nf" id="glavni">
+  <header class="nf__head">
+    <a href="/" aria-label="Larsoon — početna"><img src="/assets/logo/larsoon-logo-horizontal-light.svg" alt="Larsoon Energy" width="216" height="34"></a>
+  </header>
+  <div class="nf__body">
+    <div class="nf__inner">
+      <p class="nf__code" aria-hidden="true">404</p>
+      <h1>Stranica nije pronađena</h1>
+      <p>Adresa koju ste otvorili ne postoji ili je premještena. Početna stranica i kalkulator uštede su na jednom mjestu:</p>
+      <div class="nf__actions">
+        <a class="btn btn--primary btn--md" href="https://ponuda.larsoon.com/wizard?utm_source=www.larsoon.com&amp;utm_medium=404&amp;utm_campaign=404">Izračunajte uštedu →</a>
+        <a class="btn btn--ghost-on-dark btn--md" href="/">← Početna</a>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

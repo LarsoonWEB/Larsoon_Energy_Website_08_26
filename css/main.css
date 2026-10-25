@@ -73,7 +73,7 @@ a:hover{ color:var(--cyan-600); }
 /* SectionHeader */
 .section-header{ max-width:620px; }
 .section-header--center{ text-align:center; margin-inline:auto; }
-.section-header h2{
+.section-header h1, .section-header h2{
   font-family:var(--font-display); font-weight:700; font-size:var(--fs-h2);
   line-height:var(--lh-tight); letter-spacing:var(--tracking-display);
   color:var(--ink); margin:12px 0 0;
