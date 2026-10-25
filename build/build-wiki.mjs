@@ -172,7 +172,7 @@ const nav = (depth) => {
   const up = "../".repeat(depth);
   return `<header class="nav">
   <div class="nav__inner">
-    <a href="${up}" aria-label="Larsoon — početna"><img src="${up}assets/larsoon-logo-light.png" alt="Larsoon" class="nav__logo"></a>
+    <a href="${up}" aria-label="Larsoon — početna"><img src="${up}assets/logo/larsoon-logo-horizontal-light.svg" alt="Larsoon Energy" class="nav__logo" width="216" height="34"></a>
     <nav class="nav__links" aria-label="Glavna navigacija">
       <a href="${up}#kalkulator">Ušteda</a>
       <a href="${up}#zasto">Zašto Larsoon</a>
@@ -205,7 +205,7 @@ const footer = (depth) => {
   return `<footer class="footer">
   <div class="footer__grid">
     <div>
-      <img src="${up}assets/larsoon-logo-stacked.png" alt="Larsoon" class="footer__logo">
+      <img src="${up}assets/logo/larsoon-logo-stacked-light.svg" alt="Larsoon Energy" class="footer__logo" width="200" height="96" loading="lazy">
       <p class="footer__about">Larsoon Energy d.o.o. — projektiranje, prodaja i ugradnja solarnih elektrana, baterijskih sustava i EV punjača.<br>info@larsoon.com · +385 99 249 5949<br>Trg Ljube Babića 28, 10450 Jastrebarsko<br>OIB: 59474815786</p>
       <div class="footer__social">
         <!-- LinkedIn: dodati kad profil postoji (0.3) -->

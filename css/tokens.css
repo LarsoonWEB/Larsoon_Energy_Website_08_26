@@ -1,7 +1,13 @@
 /* ============================================================
    LARSOON — Design tokens (colors · typography · spacing)
-   Source: larsoon-design-system (claude.ai/design) — do not edit
-   values here without updating the design system.
+   KANONSKI IZVOR (plan 2.1): ovaj file je jedini izvor istine za
+   boje, fontove, radijuse i razmake na www.larsoon.com i
+   ponuda.larsoon.com. Wizard ga kopira skriptom
+   (quote_wizard: `npm run tokens:sync`) i provjerava u CI
+   (`npm run tokens:check`). Mijenjaj SAMO ovdje; nakon izmjene
+   pokreni sync u wizardu. Porijeklo: larsoon-design-system.
+   Logo: assets/logo/*.svg (horizontal = navbar, stacked = footer /
+   PDF / e-mail, symbol = favicon / OG / avatar).
    ============================================================ */
 
 :root{
