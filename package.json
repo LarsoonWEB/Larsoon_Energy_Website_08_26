@@ -1,0 +1,12 @@
+{
+  "name": "larsoon-www",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "images": "node build/build-images.mjs",
+    "serve": "node build/serve.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
+  }
+}

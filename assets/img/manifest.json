@@ -1,0 +1,96 @@
+{
+  "hero-family-solar": {
+    "width": 1600,
+    "height": 893,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  "radovi-01-web": {
+    "width": 788,
+    "height": 830,
+    "widths": [
+      480,
+      788
+    ]
+  },
+  "radovi-02-web": {
+    "width": 788,
+    "height": 1400,
+    "widths": [
+      480,
+      788
+    ]
+  },
+  "radovi-03-web": {
+    "width": 788,
+    "height": 1400,
+    "widths": [
+      480,
+      788
+    ]
+  },
+  "radovi-04-web": {
+    "width": 1400,
+    "height": 788,
+    "widths": [
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "radovi-05-web": {
+    "width": 1400,
+    "height": 788,
+    "widths": [
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "radovi-06-web": {
+    "width": 1400,
+    "height": 788,
+    "widths": [
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "rjesenja-baterija-web": {
+    "width": 1400,
+    "height": 781,
+    "widths": [
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "rjesenja-punjac-web": {
+    "width": 1400,
+    "height": 781,
+    "widths": [
+      480,
+      800,
+      1200,
+      1400
+    ]
+  },
+  "rjesenja-solar-web": {
+    "width": 1400,
+    "height": 781,
+    "widths": [
+      480,
+      800,
+      1200,
+      1400
+    ]
+  }
+}
