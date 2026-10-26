@@ -10,13 +10,14 @@
   // URL upitnika za ponudu (Quote wizard) + UTM po sekciji (plan 0.2).
   // data-wizard="<campaign>" na svakom CTA-u; kalkulator dodaje &bill=<€/mj>.
   var WIZARD_URL = "https://ponuda.larsoon.com/wizard";
-  function wizardHref(campaign, bill) {
+  function wizardHref(campaign, bill, kwp) {
     var u = WIZARD_URL + "?utm_source=larsoon.com&utm_medium=cta&utm_campaign=" + encodeURIComponent(campaign || "other");
     if (bill) u += "&bill=" + encodeURIComponent(bill);
+    if (kwp) u += "&kwp=" + encodeURIComponent(kwp); // 2.8 · prefill snage iz cjenovnih kartica
     return u;
   }
   document.querySelectorAll("[data-wizard]").forEach(function (a) {
-    a.href = wizardHref(a.getAttribute("data-wizard"));
+    a.href = wizardHref(a.getAttribute("data-wizard"), null, a.getAttribute("data-wizard-kwp"));
     a.addEventListener("click", function () {
       if (window.larsoonTrack) larsoonTrack("cta_click", { location: a.getAttribute("data-wizard") || "other" });
     });
@@ -375,6 +376,21 @@
     return { kW: best.n * best.wp / 1000, wp: best.wp, n: best.n };
   }
   function roundToPanels(kW) { return selectPanel(kW).kW; }
+
+  /* ---------- 2.8 · Cjenovne kartice: brojke iz istog motora (cjenik, FZOEU, panel, prinos) ---------- */
+  document.querySelectorAll("[data-paket-kw]").forEach(function (card) {
+    var kW = parseFloat(card.getAttribute("data-paket-kw"));
+    var cijena = cijenaSustava(kW);
+    var poticaj = subsidy(kW, cijena, 0, 0);
+    var panel = selectPanel(kW);
+    var set = function (sel, val) { var el = card.querySelector(sel); if (el) el.textContent = val; };
+    set("[data-paket-price]", fmt(Math.round(cijena)));
+    set("[data-paket-subsidy]", fmt(Math.round(poticaj)));
+    set("[data-paket-net]", fmt(Math.round(cijena - poticaj)));
+    set("[data-paket-perkw]", fmt(Math.round(cijena / kW)));
+    set("[data-paket-panels]", panel.n + " × " + panel.wp + " W");
+    set("[data-paket-kwh]", fmt(Math.round(panel.kW * PRINOS / 100) * 100));
+  });
 
   // = calcScenario() za jednu konfiguraciju: cijena, poticaj, neto, ušteda, povrat.
   function scenario(kW, batt, consYear) {
