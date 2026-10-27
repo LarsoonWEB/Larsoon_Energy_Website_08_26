@@ -192,13 +192,16 @@
      Mjesečni obračun po modelu samoopskrbe (kSO = 1, od 1. 1. 2026.): bijela
      tarifa (VT/NT 60/40, VT-first), prag 3.000 kWh preuzete energije po
      polugodištu (+35 % na energiju), mjesečno umanjenje za višak po PKC-u.
+     2.13: potrošnja po mjesecima = HEP ODS profil kućanstva (K0); udio vlastite
+     potrošnje po mjesecu iz kalibrirane tablice (PVGIS satna simulacija, HTW Berlin
+     sidra) — ovisi o omjeru proizvodnja/potrošnja i baterija/dnevna potrošnja.
      Dimenzioniranje = 10-godišnji optimum kWp + baterije ZAJEDNO (0/5/10/15/20
      kWh), bez kape na snagu; panel se bira iz kataloga (450/455/460/470 W) tako da
      n × Wp bude najbliže ciljanoj snazi (1.11, odluka 24.10.2026.).
      Pretpostavke www-a (wizard ih uzima iz unosa): prinos 1.150 kWh/kW,
      limeni krov (bez doplate), bez sjene, trofazni priključak.
      Svaka promjena konstanti mora proći i u Supabase `config` tablici wizarda
-     (compare skripta: scripts/compare-calc.mjs u wizard repozitoriju). */
+     (compare skripta: npm run compare:www u wizard repozitoriju). */
   var PRINOS = 1150;        // kWh po kW godišnje (E_y)
   var PANEL_OPTIONS_WP = [450, 455, 460, 470]; // = panel_catalog u wizardu (1.11)
   var TAR = { eVT: 0.097189, eNT: 0.047688, nVT: 0.065702, nNT: 0.028689 };
@@ -207,7 +210,15 @@
   var VT_SHARE = 0.60;
   var PROFILE = [3.9, 5.3, 8.6, 10.4, 11.7, 12.1, 12.6, 11.5, 9.1, 6.7, 4.5, 3.6];
   var SEM = [[3, 4, 5, 6, 7, 8], [9, 10, 11, 0, 1, 2]];
-  var SC_BASE = 0.30, SC_PER_KWH = 0.04, SC_MAX = 0.85;
+  // 2.13 · udio vlastite potrošnje r po mjesecu iz kalibrirane tablice (= sc-tables.ts K):
+  // redovi = baterija [kWh] / prosječna dnevna potrošnja mjeseca, stupci = proizvodnja/potrošnja mjeseca.
+  var SC_RATIO = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1, 1.25, 1.5, 2, 2.5, 3, 4, 5, 7, 10];
+  var SC_BATT = [0, 0.25, 0.5, 0.75, 1, 1.5, 2, 3];
+  var SC_K = [[0.961,0.807,0.664,0.548,0.516,0.487,0.359,0.315,0.264,0.228,0.181,0.154,0.131,0.101,0.084,0.063,0.052],[1,0.989,0.941,0.853,0.816,0.774,0.594,0.517,0.432,0.37,0.29,0.243,0.206,0.157,0.129,0.095,0.077],[1,0.999,0.991,0.961,0.928,0.889,0.756,0.677,0.569,0.487,0.379,0.314,0.264,0.198,0.16,0.115,0.089],[1,1,0.999,0.992,0.977,0.953,0.86,0.774,0.651,0.553,0.424,0.345,0.288,0.214,0.17,0.119,0.091],[1,1,1,0.999,0.993,0.981,0.916,0.838,0.705,0.59,0.444,0.356,0.294,0.216,0.17,0.12,0.091],[1,1,1,1,0.999,0.989,0.935,0.837,0.71,0.601,0.454,0.364,0.302,0.222,0.173,0.123,0.092],[1,1,1,1,1,0.994,0.956,0.869,0.745,0.621,0.461,0.366,0.3,0.219,0.172,0.124,0.091],[1,1,1,1,1,0.998,0.973,0.897,0.78,0.643,0.471,0.369,0.301,0.22,0.172,0.128,0.104]];
+  var SC_LOG_RATIO = SC_RATIO.map(function (r) { return Math.log(r); });
+  // 2.13 · mjesečni profil kućanstva (HEP ODS NKO K0 2026) i broj dana (= HOUSEHOLD_MONTHLY_WEIGHTS)
+  var HH_W = [0.1140, 0.0935, 0.0875, 0.0693, 0.0710, 0.0706, 0.0750, 0.0759, 0.0709, 0.0709, 0.0866, 0.1147];
+  var DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   var ESCAL = 0.03;
   var ANNUITY10 = (Math.pow(1 + ESCAL, 10) - 1) / ESCAL;
   var BATT_CANDIDATES = [0, 5, 10, 15, 20];
@@ -269,8 +280,20 @@
     return VT_SHARE * pVT + (1 - VT_SHARE) * pNT;
   }
 
-  function scRatio(batt) {
-    return batt > 0 ? Math.min(SC_MAX, SC_BASE + SC_PER_KWH * batt) : SC_BASE;
+  function interp1(xs, ys, x) {
+    if (x <= xs[0]) return ys[0];
+    if (x >= xs[xs.length - 1]) return ys[ys.length - 1];
+    for (var i = 1; i < xs.length; i++) {
+      if (x <= xs[i]) { var f = (x - xs[i - 1]) / (xs[i] - xs[i - 1]); return ys[i - 1] + f * (ys[i] - ys[i - 1]); }
+    }
+    return ys[ys.length - 1];
+  }
+  // = selfConsumptionRatio('K', …): bilinearna interpolacija (log omjer × baterija)
+  function scRatio(prod, cons, days, batt) {
+    if (!(prod > 0) || !(cons > 0)) return 0;
+    var lr = Math.log(Math.max(prod / cons, 1e-6));
+    var cols = SC_K.map(function (row) { return interp1(SC_LOG_RATIO, row, lr); });
+    return interp1(SC_BATT, cols, batt / (cons / days));
   }
 
   function prodMonthly(kW) {
@@ -280,12 +303,13 @@
   // = settleYear(): mjesečni obračun (kSO = 1), VT-first pokrivanje potrošnje,
   // prag 3.000 kWh/polugodište (+35 % energija), umanjenje = PKC × min(preuzeto, predano).
   // Vraća { bill: godišnji račun s PV, gross: godišnji račun bez umanjenja } u € s PDV-om.
-  function settleYear(consYear, prod, r) {
+  function settleYear(consYear, prod, batt) {
     var rows = [], m, x;
     for (m = 0; m < 12; m++) {
-      var consVT = consYear / 12 * VT_SHARE, consNT = consYear / 12 * (1 - VT_SHARE);
+      var consM = consYear * HH_W[m];
+      var consVT = consM * VT_SHARE, consNT = consM * (1 - VT_SHARE);
       var p = prod[m];
-      var sc = Math.min(r * p, consVT + consNT);
+      var sc = Math.min(scRatio(p, consM, DAYS[m], batt) * p, consVT + consNT);
       var scVT = Math.min(sc, consVT);
       var scNT = Math.min(sc - scVT, consNT);
       var impVT = consVT - scVT, impNT = consNT - scNT;
@@ -352,7 +376,7 @@
       var improved = false;
       for (var b = 0; b < BATT_CANDIDATES.length; b++) {
         var batt = BATT_CANDIDATES[b];
-        var bill = settleYear(consYear, prod, scRatio(batt)).bill;
+        var bill = settleYear(consYear, prod, batt).bill;
         var battCost = batt * BATT_EUR_PO_KWH;
         var score = (baseline - bill) * ANNUITY10 - (pvCost + battCost - subsidy(kW, pvCost, batt, battCost));
         if (score > best.score) { best = { kW: kW, batt: batt, score: score }; improved = true; }
@@ -399,7 +423,7 @@
     var invest = investPv + investBat;
     var poticaj = subsidy(kW, investPv, batt, investBat);
     var neto = invest - poticaj;
-    var s = settleYear(consYear, prodMonthly(kW), scRatio(batt));
+    var s = settleYear(consYear, prodMonthly(kW), batt);
     var baseline = settleYear(consYear, ZERO, 0).gross;
     var usteda = baseline - s.bill;
     return {
