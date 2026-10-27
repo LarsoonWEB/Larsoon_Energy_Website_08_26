@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/sajam",
+      "destination": "https://ponuda.larsoon.com/wizard?utm_source=qr&utm_medium=sajam&utm_campaign=sajam2026",
+      "permanent": false
+    },
+    {
       "source": "/rjesenja",
       "destination": "/#rjesenja",
       "permanent": false
