@@ -221,9 +221,29 @@
   var DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   var ESCAL = 0.03;
   var ANNUITY10 = (Math.pow(1 + ESCAL, 10) - 1) / ESCAL;
-  var BATT_CANDIDATES = [0, 5, 10, 15, 20];
-  var BATT_EUR_PO_KWH = 200; // €/kWh
+  var BATT_CANDIDATES = [0, 4.8, 9.6, 14.4, 19.2]; // 0.12 · moduli 4,8 kWh
+  var BATT_MODULE = 4.8, BATT_MIN = 4.8, BATT_MAX = 28.8;
+  var SIZING_MAX_COVERAGE = 1.5; // 0.12 · kapa dimenzioniranja ≤ 1,5 × pokrića
+  // = batteryPricePerKwh(): €/kWh baterije na cijelom kW = (s baterijom − bez) / ref. kWh; linearno između.
+  function battEurPoKwh(kW) {
+    var n = CJENIK_BAT.length;
+    var per = function (i) { return (CJENIK_BAT[i][1] - CJENIK_KWP[i]) / CJENIK_BAT[i][0]; };
+    if (kW <= 1) return per(0);
+    if (kW >= n) return per(n - 1);
+    var lo = Math.floor(kW), hi = Math.ceil(kW);
+    if (lo === hi) return per(lo - 1);
+    return per(lo - 1) + (kW - lo) * (per(hi - 1) - per(lo - 1));
+  }
+  function battCost(kW, batt) { return batt > 0 ? batt * battEurPoKwh(kW) : 0; }
   var BATT_SIZING_FACTOR = 0.65; // = config.battery_sizing_factor u wizardu
+  function roundToModule(kwh) { return Math.min(BATT_MAX, Math.round(Math.max(1, Math.ceil(kwh / BATT_MODULE - 1e-9)) * BATT_MODULE * 10) / 10); }
+  // = referenceBatteryKwh(): referentni kapacitet cjenika za zaokruženu snagu
+  function refBatteryKwh(kW) { var k = Math.max(1, Math.min(CJENIK_BAT.length, Math.round(kW))); return CJENIK_BAT[k - 1][0]; }
+  // = recommended_battery_kwh u calcEngine: optimum → ref. kWh cjenika (kWp način) → dnevna × 0,65
+  function recBattery(kW, consYear, optBatt, byBill) {
+    var b = optBatt > 0 ? optBatt : (byBill ? roundToModule(consYear / 365 * BATT_SIZING_FACTOR) : refBatteryKwh(kW));
+    return Math.max(BATT_MIN, Math.min(BATT_MAX, roundToModule(b)));
+  }
   var SUB_PV = { rate: 0.5, perKw: 600, cap: 6000 };
   var SUB_BATT = { rate: 0.5, perKwh: 350, cap: 5600 };
   var KWP_MODE_UTIL = 0.85;  // kWp način: potrošnja ≈ 85 % proizvodnje (kao wizard)
@@ -259,8 +279,13 @@
   }
 
   // Larsoon cjenik ključ-u-ruke, 1–20 kWp (= system_pricing u wizardu)
-  var CJENIK_KWP = [1399, 2598, 3597, 4396, 4995, 5874, 6713, 7512, 8271, 8990,
+  var CJENIK_KWP = [3849, 4329, 4989, 5449, 5939, 6429, 6959, 7512, 8271, 8990,
                     9724, 10428, 11102, 11746, 12360, 12944, 13498, 14022, 14516, 14980];
+  // 0.12 · cjenik 10/2026 „s preporučenom baterijom“ (= system_pricing_battery): [kWh, cijena] po kW 1–20
+  var CJENIK_BAT = [[4.8, 5419], [4.8, 5899], [4.8, 6559], [4.8, 7019], [4.8, 7509], [4.8, 7999], [4.8, 8729],
+                    [9.6, 9449], [9.6, 10179], [9.6, 10899], [9.6, 11609], [9.6, 12319],
+                    [14.4, 13029], [14.4, 13739], [14.4, 14449], [14.4, 15159], [14.4, 15869],
+                    [19.2, 16579], [19.2, 17289], [19.2, 17999]];
 
   // = interpolateBaseCost(): ispod 1 kW proporcionalno, iznad 20 kW ekstrapolacija
   // zadnjim korakom cjenika, između linearno.
@@ -368,17 +393,18 @@
   function optimizeSystemSize(consYear) {
     var baseline = settleYear(consYear, ZERO, 0).gross;
     var coverageKwp = consYear / PRINOS;
-    var best = { kW: coverageKwp, batt: 0, score: -Infinity };
+    var maxKwp = Math.max(1, coverageKwp * SIZING_MAX_COVERAGE);
+    var best = { kW: Math.min(coverageKwp, maxKwp), batt: 0, score: -Infinity };
     var sinceImprovement = 0;
-    for (var kW = 1; sinceImprovement < 12 && kW <= 200; kW += 0.25) {
+    for (var kW = 1; sinceImprovement < 12 && kW <= Math.min(200, maxKwp); kW += 0.25) {
       var prod = prodMonthly(kW);
       var pvCost = cijenaSustava(kW);
       var improved = false;
       for (var b = 0; b < BATT_CANDIDATES.length; b++) {
         var batt = BATT_CANDIDATES[b];
         var bill = settleYear(consYear, prod, batt).bill;
-        var battCost = batt * BATT_EUR_PO_KWH;
-        var score = (baseline - bill) * ANNUITY10 - (pvCost + battCost - subsidy(kW, pvCost, batt, battCost));
+        var bCost = battCost(kW, batt);
+        var score = (baseline - bill) * ANNUITY10 - (pvCost + bCost - subsidy(kW, pvCost, batt, bCost));
         if (score > best.score) { best = { kW: kW, batt: batt, score: score }; improved = true; }
       }
       if (kW >= coverageKwp) sinceImprovement = improved ? 0 : sinceImprovement + 1;
@@ -402,16 +428,21 @@
   function roundToPanels(kW) { return selectPanel(kW).kW; }
 
   /* ---------- 2.8 · Cjenovne kartice: brojke iz istog motora (cjenik, FZOEU, panel, prinos) ---------- */
+  // 0.12 · paketi S BATERIJOM kao na letku GEF 2026 i u cjeniku: data-paket-bat = kWh (bez atributa → bez baterije)
   document.querySelectorAll("[data-paket-kw]").forEach(function (card) {
     var kW = parseFloat(card.getAttribute("data-paket-kw"));
-    var cijena = cijenaSustava(kW);
-    var poticaj = subsidy(kW, cijena, 0, 0);
+    var bat = parseFloat(card.getAttribute("data-paket-bat")) || 0;
+    var cijenaPv = cijenaSustava(kW);
+    var cijenaBat = battCost(kW, bat);
+    var cijena = cijenaPv + cijenaBat;
+    var poticaj = subsidy(kW, cijenaPv, bat, cijenaBat);
     var panel = selectPanel(kW);
     var set = function (sel, val) { var el = card.querySelector(sel); if (el) el.textContent = val; };
+    set("[data-paket-bat-kwh]", fmt(bat, 1));
     set("[data-paket-price]", fmt(Math.round(cijena)));
     set("[data-paket-subsidy]", fmt(Math.round(poticaj)));
     set("[data-paket-net]", fmt(Math.round(cijena - poticaj)));
-    set("[data-paket-perkw]", fmt(Math.round(cijena / kW)));
+    set("[data-paket-perkw]", fmt(Math.round(cijenaPv / kW)));
     set("[data-paket-panels]", panel.n + " × " + panel.wp + " W");
     set("[data-paket-kwh]", fmt(Math.round(panel.kW * PRINOS / 100) * 100));
   });
@@ -419,7 +450,7 @@
   // = calcScenario() za jednu konfiguraciju: cijena, poticaj, neto, ušteda, povrat.
   function scenario(kW, batt, consYear) {
     var investPv = cijenaSustava(kW);
-    var investBat = batt > 0 ? batt * BATT_EUR_PO_KWH : 0;
+    var investBat = battCost(kW, batt);
     var invest = investPv + investBat;
     var poticaj = subsidy(kW, investPv, batt, investBat);
     var neto = invest - poticaj;
@@ -450,15 +481,12 @@
       consYear = billToAnnualKwh(state.bill);
       var opt = optimizeSystemSize(consYear);
       kW = roundToPanels(opt.kW);
-      // preporučena baterija: iz optimizacije; ako je optimum bez baterije,
-      // dnevna potrošnja × BATT_SIZING_FACTOR, zaokruženo na 5 kWh
-      recBatt = opt.batt > 0 ? opt.batt : Math.ceil((consYear / 365 * BATT_SIZING_FACTOR) / 5) * 5;
+      recBatt = recBattery(kW, consYear, opt.batt, true);
     } else {
       kW = roundToPanels(state.power);
       consYear = PRINOS * kW * KWP_MODE_UTIL;
-      recBatt = Math.ceil(kW / 5) * 5;
+      recBatt = recBattery(kW, consYear, 0, false);   // = referentna baterija cjenika za tu snagu
     }
-    recBatt = Math.max(5, Math.min(50, recBatt));
     var r = scenario(kW, state.batt ? recBatt : 0, consYear);
     var godRacun = r.bill;
     var noviRacun = Math.max(0, godRacun / 12);
@@ -485,7 +513,7 @@
 
     // Baterija
     el.battChip.setAttribute("aria-pressed", state.batt ? "true" : "false");
-    el.battLabel.textContent = state.batt ? "S baterijom " + recBatt + " kWh" : "Bez baterije";
+    el.battLabel.textContent = state.batt ? "S baterijom " + fmt(recBatt, 1) + " kWh" : "Bez baterije";
 
     // KPI
     el.newBill.textContent = fmt(Math.round(noviRacun));
