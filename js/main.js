@@ -428,16 +428,21 @@
   function roundToPanels(kW) { return selectPanel(kW).kW; }
 
   /* ---------- 2.8 · Cjenovne kartice: brojke iz istog motora (cjenik, FZOEU, panel, prinos) ---------- */
+  // 0.12 · paketi S BATERIJOM kao na letku GEF 2026 i u cjeniku: data-paket-bat = kWh (bez atributa → bez baterije)
   document.querySelectorAll("[data-paket-kw]").forEach(function (card) {
     var kW = parseFloat(card.getAttribute("data-paket-kw"));
-    var cijena = cijenaSustava(kW);
-    var poticaj = subsidy(kW, cijena, 0, 0);
+    var bat = parseFloat(card.getAttribute("data-paket-bat")) || 0;
+    var cijenaPv = cijenaSustava(kW);
+    var cijenaBat = battCost(kW, bat);
+    var cijena = cijenaPv + cijenaBat;
+    var poticaj = subsidy(kW, cijenaPv, bat, cijenaBat);
     var panel = selectPanel(kW);
     var set = function (sel, val) { var el = card.querySelector(sel); if (el) el.textContent = val; };
+    set("[data-paket-bat-kwh]", fmt(bat, 1));
     set("[data-paket-price]", fmt(Math.round(cijena)));
     set("[data-paket-subsidy]", fmt(Math.round(poticaj)));
     set("[data-paket-net]", fmt(Math.round(cijena - poticaj)));
-    set("[data-paket-perkw]", fmt(Math.round(cijena / kW)));
+    set("[data-paket-perkw]", fmt(Math.round(cijenaPv / kW)));
     set("[data-paket-panels]", panel.n + " × " + panel.wp + " W");
     set("[data-paket-kwh]", fmt(Math.round(panel.kW * PRINOS / 100) * 100));
   });

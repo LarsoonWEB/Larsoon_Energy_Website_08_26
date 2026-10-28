@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="/css/main.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-  {"@type":"Question","name":"Koliko košta solarna elektrana za kuću u 2026.?","acceptedAnswer":{"@type":"Answer","text":"Solarna elektrana ključ u ruke za obiteljsku kuću stoji okvirno 5.939 € za 5 kW, odnosno 8.990 € za 10 kW, s 0 % PDV-a na isporuku i ugradnju. Uz FZOEU poticaj do 6.000 € neto ulaganje je do 50 % niže. Točnu cijenu za svoj krov izračunajte našim kalkulatorom."}},
+  {"@type":"Question","name":"Koliko košta solarna elektrana za kuću u 2026.?","acceptedAnswer":{"@type":"Answer","text":"Solarna elektrana ključ u ruke za obiteljsku kuću stoji okvirno 5.939 € za 5 kW, odnosno 8.990 € za 10 kW bez baterije; paket 10 kW s baterijom 9,6 kWh stoji 10.899 €, sve s 0 % PDV-a na isporuku i ugradnju. Uz FZOEU poticaj (do 6.000 € za elektranu i 5.600 € za bateriju) neto ulaganje je do 50 % niže. Točnu cijenu za svoj krov izračunajte našim kalkulatorom."}},
   {"@type":"Question","name":"Koje poticaje mogu dobiti u 2026.?","acceptedAnswer":{"@type":"Answer","text":"FZOEU poziv EnU-6/26 sufinancira do 50 % investicije: najviše 600 € po kW elektrane (do 6.000 €) i 350 € po kWh baterije (do 5.600 €). Kućanstva u riziku od energetskog siromaštva ostvaruju do 70 %. Poziv je otvoren 2. rujna 2026. i privremeno zatvoren nakon dva dana (9.320 prijava). FZOEU je najavio novi poziv — mi pripremamo dokumentaciju unaprijed, tako da prijava ide isti sat kad se poziv otvori."}},
   {"@type":"Question","name":"Isplati li se solarna elektrana nakon ukidanja net-meteringa?","acceptedAnswer":{"@type":"Answer","text":"Da — ali se isplativost sada temelji na samopotrošnji. Od 1. 1. 2026. višak struje predan u mrežu obračunava se mjesečno po nižoj otkupnoj cijeni, dok svaki kWh koji potrošite iz vlastite elektrane vrijedi punih ~0,18 €. Uz dobro dimenzioniran sustav i FZOEU poticaj povrat je tipično 4,5–6 godina, a s baterijom godišnja ušteda gotovo se udvostručuje."}},
   {"@type":"Question","name":"Trebam li bateriju za solarnu elektranu?","acceptedAnswer":{"@type":"Answer","text":"Bez baterije prosječno kućanstvo iskoristi oko 30 % proizvedene struje, a s baterijom oko 70 % — vlastitu struju trošite i navečer. Budući da FZOEU od 2026. sufinancira i baterije (350 €/kWh), baterija u pravilu ne produljuje povrat investicije, a znatno povećava uštedu."}},
@@ -392,39 +392,39 @@
   <div class="section__inner">
     <div class="section-header section-header--center">
       <span class="eyebrow">Cijene</span>
-      <h2>Tri tipične veličine — jedna cijena, sve uključeno</h2>
-      <p class="lead">Isti cjenik kao u kalkulatoru i u PDF ponudi: ključ u ruke, 0 % PDV-a, fiksna cijena, prije FZOEU poticaja. Točnu snagu za vaš krov i potrošnju daje kalkulator.</p>
+      <h2>Paketi s baterijom — jedna cijena, sve uključeno</h2>
+      <p class="lead">Isti cjenik kao na sajmu, u kalkulatoru i u PDF ponudi: elektrana + baterija ključ u ruke, 0 % PDV-a, fiksna cijena, prije FZOEU poticaja. Točnu snagu i kapacitet za vaš krov i potrošnju daje kalkulator.</p>
     </div>
     <div class="paketi" data-paketi>
-      <article class="paket" data-paket-kw="6">
-        <p class="paket__name">Manja kuća</p>
-        <p class="paket__kw"><span class="paket__kw-num">6</span> kW</p>
+      <article class="paket" data-paket-kw="6" data-paket-bat="4.8">
+        <p class="paket__name">Manja obiteljska kuća</p>
+        <p class="paket__kw"><span class="paket__kw-num">6</span> kW <span class="paket__bat">+ <span data-paket-bat-kwh>4,8</span> kWh baterija</span></p>
         <p class="paket__panels"><span data-paket-panels>13 × 460 W</span> · ≈ <span data-paket-kwh>6.900</span> kWh/god</p>
-        <p class="paket__price"><span data-paket-price>6.429</span> €</p>
-        <p class="paket__sub">FZOEU poticaj −<span data-paket-subsidy>3.215</span> € → <strong><span data-paket-net>3.215</span> €</strong> neto</p>
-        <p class="paket__per"><span data-paket-perkw>1.072</span> €/kW · 0 % PDV</p>
+        <p class="paket__price"><span data-paket-price>7.999</span> €</p>
+        <p class="paket__sub">FZOEU poticaj −<span data-paket-subsidy>4.000</span> € → <strong><span data-paket-net>4.000</span> €</strong> neto</p>
+        <p class="paket__per">sve uključeno · 0 % PDV</p>
         <a class="btn btn--primary btn--md" href="#" data-wizard="paketi" data-wizard-kwp="6">Ponuda za 6 kW →</a>
       </article>
-      <article class="paket paket--featured" data-paket-kw="10">
-        <p class="paket__name">Obiteljska kuća</p>
-        <p class="paket__kw"><span class="paket__kw-num">10</span> kW</p>
+      <article class="paket paket--featured" data-paket-kw="10" data-paket-bat="9.6">
+        <p class="paket__name">Kuća s dizalicom topline ili električnim autom</p>
+        <p class="paket__kw"><span class="paket__kw-num">10</span> kW <span class="paket__bat">+ <span data-paket-bat-kwh>9,6</span> kWh baterija</span></p>
         <p class="paket__panels"><span data-paket-panels>22 × 455 W</span> · ≈ <span data-paket-kwh>11.500</span> kWh/god</p>
-        <p class="paket__price"><span data-paket-price>8.990</span> €</p>
-        <p class="paket__sub">FZOEU poticaj −<span data-paket-subsidy>4.495</span> € → <strong><span data-paket-net>4.495</span> €</strong> neto</p>
-        <p class="paket__per"><span data-paket-perkw>899</span> €/kW · 0 % PDV</p>
+        <p class="paket__price"><span data-paket-price>10.899</span> €</p>
+        <p class="paket__sub">FZOEU poticaj −<span data-paket-subsidy>5.450</span> € → <strong><span data-paket-net>5.450</span> €</strong> neto</p>
+        <p class="paket__per">sve uključeno · 0 % PDV</p>
         <a class="btn btn--primary btn--md" href="#" data-wizard="paketi" data-wizard-kwp="10">Ponuda za 10 kW →</a>
       </article>
-      <article class="paket" data-paket-kw="20">
-        <p class="paket__name">Veća kuća, toplinska pumpa, EV</p>
-        <p class="paket__kw"><span class="paket__kw-num">20</span> kW</p>
+      <article class="paket" data-paket-kw="20" data-paket-bat="19.2">
+        <p class="paket__name">Veća kuća, dizalica topline + EV</p>
+        <p class="paket__kw"><span class="paket__kw-num">20</span> kW <span class="paket__bat">+ <span data-paket-bat-kwh>19,2</span> kWh baterija</span></p>
         <p class="paket__panels"><span data-paket-panels>44 × 455 W</span> · ≈ <span data-paket-kwh>23.000</span> kWh/god</p>
-        <p class="paket__price"><span data-paket-price>14.980</span> €</p>
-        <p class="paket__sub">FZOEU poticaj −<span data-paket-subsidy>6.000</span> € → <strong><span data-paket-net>8.980</span> €</strong> neto</p>
-        <p class="paket__per"><span data-paket-perkw>749</span> €/kW · 0 % PDV</p>
+        <p class="paket__price"><span data-paket-price>17.999</span> €</p>
+        <p class="paket__sub">FZOEU poticaj −<span data-paket-subsidy>7.510</span> € → <strong><span data-paket-net>10.490</span> €</strong> neto</p>
+        <p class="paket__per">sve uključeno · 0 % PDV</p>
         <a class="btn btn--primary btn--md" href="#" data-wizard="paketi" data-wizard-kwp="20">Ponuda za 20 kW →</a>
       </article>
     </div>
-    <p class="paketi__note">Cijena uključuje panele, inverter, konstrukciju, montažu, priključenje i dokumentaciju za HEP i FZOEU; bez baterije (dodaje se u kalkulatoru). Nadoplata za crijep, ravni krov ili šindru i optimizatori za zasjenjene krovove izračunavaju se u ponudi. FZOEU: 50 % investicije, najviše 600 €/kW i 6.000 € — po uvjetima zadnjeg poziva (EnU-6/26). Godišnja proizvodnja uz 1.150 kWh/kW (kontinentalna Hrvatska); stvarna ovisi o lokaciji, orijentaciji i nagibu. Cijene vrijede do 31.3.2027.</p>
+    <p class="paketi__note">Cijena uključuje panele, inverter, bateriju, konstrukciju, montažu, priključenje i dokumentaciju za HEP i FZOEU. Elektrana bez baterije: 6 kW 6.429 €, 10 kW 8.990 €, 20 kW 14.980 € (cjenik 1–20 kW u kalkulatoru). Nadoplata za crijep, ravni krov ili šindru i optimizatori za zasjenjene krovove izračunavaju se u ponudi. FZOEU: 50 % investicije, najviše 600 €/kW (do 6.000 €) za elektranu i 350 €/kWh (do 5.600 €) za bateriju — po uvjetima zadnjeg poziva (EnU-6/26). Godišnja proizvodnja uz 1.150 kWh/kW (kontinentalna Hrvatska); stvarna ovisi o lokaciji, orijentaciji i nagibu. Sajamska cijena vrijedi do 15.11.2026.</p>
   </div>
 </section>
 
@@ -595,7 +595,7 @@
           <span>Koliko košta solarna elektrana za kuću u 2026.?</span>
           <i data-lucide="chevron-down"></i>
         </button>
-        <div class="faq__a">Solarna elektrana ključ u ruke za obiteljsku kuću stoji okvirno 5.939 € za 5 kW, odnosno 8.990 € za 10 kW, s 0 % PDV-a na isporuku i ugradnju. Uz FZOEU poticaj do 6.000 € neto ulaganje je do 50 % niže. Točnu cijenu za svoj krov izračunajte našim kalkulatorom.</div>
+        <div class="faq__a">Solarna elektrana ključ u ruke za obiteljsku kuću stoji okvirno 5.939 € za 5 kW, odnosno 8.990 € za 10 kW bez baterije; paket 10 kW s baterijom 9,6 kWh stoji 10.899 €, sve s 0 % PDV-a na isporuku i ugradnju. Uz FZOEU poticaj (do 6.000 € za elektranu i 5.600 € za bateriju) neto ulaganje je do 50 % niže. Točnu cijenu za svoj krov izračunajte našim kalkulatorom.</div>
       </div>
       <div class="faq__item">
         <button type="button" class="faq__q" aria-expanded="false">
